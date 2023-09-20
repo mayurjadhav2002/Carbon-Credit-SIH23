@@ -6,6 +6,8 @@ import Contact from './Components/miscellaneous/Contact';
 import Error from "./Components/miscellaneous/Error";
 import './App.css';
 import Login from "./Components/Auth/Login";
+import Company from "./Components/govt/Company";
+import CompanyData from "./Components/govt/CompanyData";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route exact path='/login' element={<Login />} />
 
         <Route path='/contact' element={<Contact />} />
+        <Route path='/govt/dashboard' element={<Company />} />
+        <Route path='/govt/company/data' element={<CompanyData />} />
 
         <Route path="*" element={<Error />} />
 

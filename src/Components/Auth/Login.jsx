@@ -17,9 +17,28 @@ import {
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 
+
+
+
+
+
 function Login() {
     const [type, setType] = React.useState("card");
-
+    const data = [
+        {
+          label: "Company Login",
+          value: "html",
+          desc: `Because it's about motivating the doers. Because I'm here
+          to follow my dreams and inspire other people to follow their dreams, too.`,
+        },
+        {
+          label: "Government Login",
+          value: "react",
+          desc: `Because it's about motivating the doers. Because I'm here
+          to follow my dreams and inspire other people to follow their dreams, too.`,
+        },
+   
+      ];
     return (
         <div>
 
@@ -48,174 +67,173 @@ function Login() {
 
 
 
-                    <Card className="w-full px-5 h-full align-middle my-auto">
+                    <Card className="w-full px-5 items-center justify-center  h-full align-middle my-auto bg-slate-50">
 
                         <CardBody className='mx-auto w-full'>
 
-                            <Tabs value="html" className="max-w-full w-full">
-                                <TabsHeader
-                                    className="bg-transparent gap-3"
-                                    indicatorProps={{
-                                        className: "bg-gray-900/10 shadow-none !text-gray-900",
-                                    }}
+                        <Tabs value="html"
+                            className="bg-transparent"
+                        indicatorProps={{
+                          className: "bg-gray-900/10 shadow-none !text-gray-900 p-5  hover:bg-blue-50",
+                        }}>
+                        <TabsHeader>
+                            <Tab key="html" value="html" className='p-5'>
+                              Company Login
+                            </Tab>
+                            <Tab key="Government" value="Government" className='p-5'>
+                              Government Login
+                            </Tab>
+                        </TabsHeader>
+                        <TabsBody>
+                       
+                            <TabPanel key="html" value="html">
+                            <form className="mt-12 flex flex-col gap-4 px-3">
+                                            <h1 className='text-2xl'>Please Login with your Official Credentials</h1>
+
+                                            <div>
+                                                <div className="mb-2 block">
+                                                    <Label
+                                                        htmlFor="email2"
+                                                        value="Your email"
+                                                    />
+                                                </div>
+                                                <TextInput
+                                                    id="email2"
+                                                    placeholder="name@flowbite.com"
+                                                    required
+                                                    shadow
+                                                    type="email"
+                                                />
+                                            </div>
+                                            <div>
+                                                <div className="mb-2 block">
+                                                    <Label
+                                                        htmlFor="password2"
+                                                        value="Your password"
+                                                    />
+                                                </div>
+                                                <TextInput
+                                                    id="password2"
+                                                    required
+                                                    shadow
+                                                    type="password"
+                                                />
+                                            </div>
+                                            <div>
+                                                <div className="mb-2 block">
+                                                    <Label
+                                                        htmlFor="repeat-password"
+                                                        value="Repeat password"
+                                                    />
+                                                </div>
+                                                <TextInput
+                                                    id="repeat-password"
+                                                    required
+                                                    shadow
+                                                    type="password"
+                                                />
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <Checkbox id="agree" />
+                                                <Label
+                                                    className="flex"
+                                                    htmlFor="agree"
+                                                >
+                                                    <p>
+                                                        I agree with the
+                                                    </p>
+                                                    <Link
+                                                        className="text-cyan-600 hover:underline dark:text-cyan-500"
+                                                        to={'/'}
+                                                    >
+                                                        <p>
+                                                            terms and conditions
+                                                        </p>
+                                                    </Link>
+                                                </Label>
+                                            </div>
+                                            <Button type="submit">
+                                                Register new account
+                                            </Button>
+                                        </form>
+
+                        </TabPanel>
+                          
+
+                        <TabPanel key="Government" value="Government">
+                        <form className="mt-12 flex flex-col gap-4 px-3">
+                        <h1 className='text-2xl'>Please Login with your Official Credentials</h1>
+
+                        <div>
+                            <div className="mb-2 block">
+                                <Label
+                                    htmlFor="email2"
+                                    value="Your email"
+                                />
+                            </div>
+                            <TextInput
+                                id="email2"
+                                placeholder="name@flowbite.com"
+                                required
+                                shadow
+                                type="email"
+                            />
+                        </div>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label
+                                    htmlFor="password2"
+                                    value="Your password"
+                                />
+                            </div>
+                            <TextInput
+                                id="password2"
+                                required
+                                shadow
+                                type="password"
+                            />
+                        </div>
+                        <div>
+                            <div className="mb-2 block">
+                                <Label
+                                    htmlFor="repeat-password"
+                                    value="Repeat password"
+                                />
+                            </div>
+                            <TextInput
+                                id="repeat-password"
+                                required
+                                shadow
+                                type="password"
+                            />
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Checkbox id="agree" />
+                            <Label
+                                className="flex"
+                                htmlFor="agree"
+                            >
+                                <p>
+                                    I agree with the
+                                </p>
+                                <Link
+                                    className="text-cyan-600 hover:underline dark:text-cyan-500"
+                                    to={'/'}
                                 >
-
-
-                                    <Tab value="c" className='py-3 hover:bg-gray-100'>
-                                        Company Login
-                                    </Tab>
-                                    <Tab value="g" className='py-3 hover:bg-gray-100'>
-                                        GOvn Login
-                                    </Tab>
-
-                                </TabsHeader>
-                                <TabsBody>
-                                    <TabPanel value="c">
-                                        <form className="mt-12 flex flex-col gap-4 px-3">
-                                            <h1 className='text-2xl'>Please Login with your Official Credentials</h1>
-
-                                            <div>
-                                                <div className="mb-2 block">
-                                                    <Label
-                                                        htmlFor="email2"
-                                                        value="Your email"
-                                                    />
-                                                </div>
-                                                <TextInput
-                                                    id="email2"
-                                                    placeholder="name@flowbite.com"
-                                                    required
-                                                    shadow
-                                                    type="email"
-                                                />
-                                            </div>
-                                            <div>
-                                                <div className="mb-2 block">
-                                                    <Label
-                                                        htmlFor="password2"
-                                                        value="Your password"
-                                                    />
-                                                </div>
-                                                <TextInput
-                                                    id="password2"
-                                                    required
-                                                    shadow
-                                                    type="password"
-                                                />
-                                            </div>
-                                            <div>
-                                                <div className="mb-2 block">
-                                                    <Label
-                                                        htmlFor="repeat-password"
-                                                        value="Repeat password"
-                                                    />
-                                                </div>
-                                                <TextInput
-                                                    id="repeat-password"
-                                                    required
-                                                    shadow
-                                                    type="password"
-                                                />
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <Checkbox id="agree" />
-                                                <Label
-                                                    className="flex"
-                                                    htmlFor="agree"
-                                                >
-                                                    <p>
-                                                        I agree with the
-                                                    </p>
-                                                    <Link
-                                                        className="text-cyan-600 hover:underline dark:text-cyan-500"
-                                                        to={'/'}
-                                                    >
-                                                        <p>
-                                                            terms and conditions
-                                                        </p>
-                                                    </Link>
-                                                </Label>
-                                            </div>
-                                            <Button type="submit">
-                                                Register new account
-                                            </Button>
-                                        </form>
-                                    </TabPanel>
-
-                                    <TabPanel value="g">
-                                        <form className="mt-12 flex flex-col gap-4 px-3">
-                                            <h1 className='text-2xl'>Please Login with your Official Credentials</h1>
-
-                                            <div>
-                                                <div className="mb-2 block">
-                                                    <Label
-                                                        htmlFor="email2"
-                                                        value="Your email"
-                                                    />
-                                                </div>
-                                                <TextInput
-                                                    id="email2"
-                                                    placeholder="name@flowbite.com"
-                                                    required
-                                                    shadow
-                                                    type="email"
-                                                />
-                                            </div>
-                                            <div>
-                                                <div className="mb-2 block">
-                                                    <Label
-                                                        htmlFor="password2"
-                                                        value="Your password"
-                                                    />
-                                                </div>
-                                                <TextInput
-                                                    id="password2"
-                                                    required
-                                                    shadow
-                                                    type="password"
-                                                />
-                                            </div>
-                                            <div>
-                                                <div className="mb-2 block">
-                                                    <Label
-                                                        htmlFor="repeat-password"
-                                                        value="Repeat password"
-                                                    />
-                                                </div>
-                                                <TextInput
-                                                    id="repeat-password"
-                                                    required
-                                                    shadow
-                                                    type="password"
-                                                />
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <Checkbox id="agree" />
-                                                <Label
-                                                    className="flex"
-                                                    htmlFor="agree"
-                                                >
-                                                    <p>
-                                                        I agree with the
-                                                    </p>
-                                                    <Link
-                                                        className="text-cyan-600 hover:underline dark:text-cyan-500"
-                                                        to={'/'}
-                                                    >
-                                                        <p>
-                                                            terms and conditions
-                                                        </p>
-                                                    </Link>
-                                                </Label>
-                                            </div>
-                                            <Button type="submit">
-                                                Register new account
-                                            </Button>
-                                        </form>
-                                    </TabPanel>
-                                </TabsBody>
-
-                            </Tabs>
+                                    <p>
+                                        terms and conditions
+                                    </p>
+                                </Link>
+                            </Label>
+                        </div>
+                        <Button type="submit">
+                            Register new account
+                        </Button>
+                    </form>
+                        </TabPanel>
+                          
+                        </TabsBody>
+                      </Tabs>
 
 
 

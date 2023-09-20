@@ -4,9 +4,13 @@ import {
   MobileNav,
   Typography,
   Button,
+  Avatar,
   IconButton,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { Menu } from "@headlessui/react";
+import { Fragment } from 'react'
+
 
 export default function Navigation() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -38,6 +42,11 @@ export default function Navigation() {
       text: "login",
       href: "/login"
     },
+    {
+      text: "Company",
+      href: "/company"
+    },
+
 
 
 
@@ -90,7 +99,7 @@ export default function Navigation() {
 
   return (
     <div className="w-full">
-      <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 text-black">
+      <Navbar className="fixed top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 text-black">
 
 
 
@@ -121,10 +130,36 @@ export default function Navigation() {
 
             </ul>
           </div>
+
+
+          <Menu>
+            <Menu.Button>
+              <div className="flex items-center gap-4">
+                <Avatar src="https://www.material-tailwind.com/img/face-2.jpg" alt="avatar" variant="rounded" />
+                <div>
+                  <Typography variant="h6">Mayur Jadhav</Typography>
+                  <Typography variant="small" color="gray" className="font-normal">
+                    Web Developer
+                  </Typography>
+                </div>
+              </div>
+
+            </Menu.Button>
+            
+            <Menu.Items>
+              <Menu.Item
+              as="a"
+              key={2}
+              href={"jndas"}
+              className="ui-active:bg-blue-500 ui-active:text-white ui-not-active:bg-white ui-not-active:text-black"
       
-          <Button variant="gradient" size="sm" className="hidden lg:inline-block">
-            <span>Buy Now</span>
-          </Button>
+              >Logout
+              </Menu.Item>
+            </Menu.Items>
+            
+
+          </Menu>
+
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -166,9 +201,10 @@ export default function Navigation() {
         <MobileNav open={openNav}>
           <div className="container mx-auto">
             {navList}
-            <Button variant="gradient" size="sm" fullWidth className="mb-2">
-              <span>Buy Now</span>
-            </Button>
+            <div class="px-4 py-3">
+              <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
+              <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+            </div>
           </div>
         </MobileNav>
       </Navbar>
