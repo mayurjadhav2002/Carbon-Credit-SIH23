@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import { MdGeneratingTokens, MdPendingActions } from 'react-icons/md'
+// , MdPendingActions
+import { MdGeneratingTokens } from 'react-icons/md'
 import { FcFactory } from 'react-icons/fc'
 import {
   Chart as ChartJS, ArcElement, Tooltip, Legend,

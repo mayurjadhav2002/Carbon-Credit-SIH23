@@ -1,19 +1,15 @@
 'use client';
 
 import { Sidebar } from 'flowbite-react';
-import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from 'react-icons/hi';
+// HiInbox,HiUser
+import { HiArrowSmRight, HiChartPie,  HiShoppingBag, HiTable, HiViewBoards } from 'react-icons/hi';
 import {MdFactory, MdPendingActions} from 'react-icons/md'
 import {TbCertificate} from 'react-icons/tb'
 import { Link } from 'react-router-dom';
 
 export default function ContentSeparator() {
     return (
-
         <div className='bg-gray-50'>
-
-
-
-
             <aside id="logo-sidebar" class="fixed top-0 left-0 h-screen pt-20 transition-transform -translate-x-
              bg-white  sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
                 <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -81,14 +77,6 @@ export default function ContentSeparator() {
                                 </Sidebar.Item>
                             </Sidebar.ItemGroup>
                             <Sidebar.ItemGroup>
-                                <Sidebar.Item
-                                    href="#"
-                                    icon={HiChartPie}
-                                >
-                                    <p>
-                                        Upgrade to Pro
-                                    </p>
-                                </Sidebar.Item>
                                 <Sidebar.Item
                                     href="#"
                                     icon={HiViewBoards}

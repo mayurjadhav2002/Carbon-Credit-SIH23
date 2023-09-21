@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import { MdGeneratingTokens, MdPendingActions } from 'react-icons/md'
-import { FcFactory } from 'react-icons/fc'
+// import { MdGeneratingTokens, MdPendingActions } from 'react-icons/md'
+// import { FcFactory } from 'react-icons/fc'
 import TableData from './utils/TableData'
 
 

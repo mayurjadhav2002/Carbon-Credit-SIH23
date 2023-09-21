@@ -3,13 +3,13 @@ import {
   Navbar,
   MobileNav,
   Typography,
-  Button,
+  // Button,
   Avatar,
   IconButton,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { Menu } from "@headlessui/react";
-import { Fragment } from 'react'
+// import { Fragment } from 'react'
 
 
 export default function Navigation() {
@@ -60,7 +60,7 @@ export default function Navigation() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <a href="/#" className="flex items-center">
           Pages
         </a>
       </Typography>
@@ -70,7 +70,7 @@ export default function Navigation() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <a href="/#" className="flex items-center">
           Account
         </a>
       </Typography>
@@ -80,7 +80,7 @@ export default function Navigation() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <a href="/#" className="flex items-center">
           Blocks
         </a>
       </Typography>
@@ -90,7 +90,7 @@ export default function Navigation() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <a href="/#" className="flex items-center">
           Docs
         </a>
       </Typography>
@@ -146,7 +146,7 @@ export default function Navigation() {
 
             </Menu.Button>
             
-            <Menu.Items>
+            <Menu.Items className={"absolute right-5 w-40 text-center  shadow-md px-6 py-3 top-20 bg-white"}>
               <Menu.Item
               as="a"
               key={2}
@@ -198,7 +198,7 @@ export default function Navigation() {
             )}
           </IconButton>
         </div>
-        <MobileNav open={openNav}>
+        <MobileNav open={openNav}> 
           <div className="container mx-auto">
             {navList}
             <div class="px-4 py-3">

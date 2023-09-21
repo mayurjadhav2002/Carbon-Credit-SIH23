@@ -1,0 +1,14 @@
+::-webkit-scrollbar {
+    width: 0.1px;
+}
+a{
+  cursor:pointer; 
+ }
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

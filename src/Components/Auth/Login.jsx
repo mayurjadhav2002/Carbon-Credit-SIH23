@@ -1,17 +1,17 @@
 import React from 'react'
 import {
     Card,
-    CardHeader,
+    // CardHeader,
     CardBody,
-    Input,
-    Typography,
+    // Input,
+    // Typography,
     Tabs,
     TabsHeader,
     TabsBody,
     Tab,
     TabPanel,
-    Select,
-    Option,
+    // Select,
+    // Option,
 } from "@material-tailwind/react";
 
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
@@ -23,22 +23,22 @@ import { Link } from 'react-router-dom';
 
 
 function Login() {
-    const [type, setType] = React.useState("card");
-    const data = [
-        {
-          label: "Company Login",
-          value: "html",
-          desc: `Because it's about motivating the doers. Because I'm here
-          to follow my dreams and inspire other people to follow their dreams, too.`,
-        },
-        {
-          label: "Government Login",
-          value: "react",
-          desc: `Because it's about motivating the doers. Because I'm here
-          to follow my dreams and inspire other people to follow their dreams, too.`,
-        },
+    // const [type, setType] = React.useState("card");
+    // const data = [
+    //     {
+    //       label: "Company Login",
+    //       value: "html",
+    //       desc: `Because it's about motivating the doers. Because I'm here
+    //       to follow my dreams and inspire other people to follow their dreams, too.`,
+    //     },
+    //     {
+    //       label: "Government Login",
+    //       value: "react",
+    //       desc: `Because it's about motivating the doers. Because I'm here
+    //       to follow my dreams and inspire other people to follow their dreams, too.`,
+    //     },
    
-      ];
+    //   ];
     return (
         <div>
 
