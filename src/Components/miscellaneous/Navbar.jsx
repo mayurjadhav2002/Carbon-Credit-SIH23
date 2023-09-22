@@ -99,7 +99,7 @@ export default function Navigation() {
 
   return (
     <div className="w-full">
-      <Navbar className="fixed top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 text-black">
+      <Navbar className="fixed top-0 z-[2000] h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 text-black">
 
 
 
