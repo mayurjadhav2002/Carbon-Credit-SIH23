@@ -22,15 +22,23 @@ function App() {
         <Route exact path='/login' element={<Login />} />
 
         <Route path='/contact' element={<Contact />} />
+
+        {/* Government */}
         <Route path='/govt/dashboard' element={<Company />} />
         <Route path='/govt/company/data' element={<CompanyData />} />
+
+        {/* Company */}
         <Route path='/company/data' element={<Data />} />
         <Route path='/company/' element={<CompanyIndex />} />
         <Route path='/company/licence-transaction' element={<BuyCredits />} />
-        <Route path='/graph' element={<PollutionGraph />} />
 
         <Route path='/company/certificate' element={<Certificate />} />
 
+
+
+        {/* Miscellanous */}
+
+        <Route path='/graph' element={<PollutionGraph />} />
         <Route path="*" element={<Error />} />
 
       </Routes>

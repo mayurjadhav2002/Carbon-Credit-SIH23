@@ -6,13 +6,15 @@ import {
   // Button,
   Avatar,
   IconButton,
+  Button,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { Menu } from "@headlessui/react";
 // import { Fragment } from 'react'
-
+import {MdAccountBalance} from 'react-icons/md'
 
 export default function Navigation() {
+  const login = false;
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -24,10 +26,7 @@ export default function Navigation() {
 
 
   const NavList = [
-    {
-      text: "Dashboard",
-      href: "/"
-    },
+
 
     {
       text: "Contact",
@@ -38,10 +37,7 @@ export default function Navigation() {
       text: "About",
       href: "/about"
     },
-    {
-      text: "login",
-      href: "/login"
-    },
+
     {
       text: "Company",
       href: "/company"
@@ -49,6 +45,11 @@ export default function Navigation() {
 
 
 
+
+    {
+      text: "Government",
+      href: "/govt/dashboard"
+    },
 
   ]
 
@@ -130,8 +131,14 @@ export default function Navigation() {
 
             </ul>
           </div>
-
-
+{!login ? 
+          <div className="flex w-max gap-4">
+         
+          <Link to="/login" className="flex items-center gap-3 text-white bg-blue-500 hover:bg-blue-800 
+          font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> <MdAccountBalance className="text-xl"/>Go to Dashboard</Link>
+   
+        </div>
+:
           <Menu>
             <Menu.Button>
               <div className="flex items-center gap-4">
@@ -159,7 +166,7 @@ export default function Navigation() {
             
 
           </Menu>
-
+        }
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

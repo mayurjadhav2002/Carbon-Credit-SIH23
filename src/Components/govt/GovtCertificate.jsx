@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 import {AiOutlineDownload, AiFillEye} from 'react-icons/ai'
-const Certificate = () => {
+const GovtCertificate = () => {
 
     return (
         <div className='flex justify-start gap-5'>
@@ -39,4 +39,4 @@ const Certificate = () => {
 
 
 
-export default Certificate;
+export default GovtCertificate;
