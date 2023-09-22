@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 import {AiOutlineDownload, AiFillEye} from 'react-icons/ai'
+import ApprovedCertificates from './utils/ApprovedCertificates'
 const GovtCertificate = () => {
 
     return (
@@ -31,6 +32,8 @@ const GovtCertificate = () => {
                     </div>
 
                 </div>
+
+                <ApprovedCertificates/>
             </div>
 
         </div>
