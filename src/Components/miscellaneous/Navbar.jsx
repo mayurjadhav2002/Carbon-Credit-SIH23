@@ -37,8 +37,8 @@ export default function Navigation() {
     },
 
     {
-      text: "graph",
-      href: "/graph"
+      text: "Map",
+      href: "/demo/map"
     },
     {
       text: "Company",
