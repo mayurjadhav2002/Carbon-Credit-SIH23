@@ -8,7 +8,7 @@ function Home() {
     iconSize: [32, 32],
   });
   function calculateCircleRadius(zoom) {
-    return 100 / Math.pow(2, zoom - 12); 
+    return 1000
   }
   const markers = [
     {
@@ -44,7 +44,7 @@ function Home() {
           <Circle
             center={marker.position}
             radius={calculateCircleRadius(8)}
-            pathOptions={{ color: 'blue' }}
+            pathOptions={{ color: 'green' }}
           />
             <Popup>{marker.title}</Popup>
           </Marker>

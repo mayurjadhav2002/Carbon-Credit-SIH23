@@ -36,7 +36,8 @@ export default function ContentSeparator() {
                                     </p>
                                 </Sidebar.Item>
                                 <Sidebar.Item
-                                    href="#"
+                                as={Link}
+                                    to="/company/certificate"
                                     icon={TbCertificate}
                                 >
                                     <div className='flex items-center justify-between'>

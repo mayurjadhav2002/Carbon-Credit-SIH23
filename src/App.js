@@ -12,6 +12,7 @@ import CompanyIndex from "./Components/Company/CompanyIndex";
 import Data from './Components/Company/Data'
 import BuyCredits from "./Components/Company/BuyCredits";
 import PollutionGraph from './Components/miscellaneous/PollutonGraph'
+import Certificate from "./Components/Company/Certificate";
 function App() {
   return (
     <div className="w-full">
@@ -25,9 +26,10 @@ function App() {
         <Route path='/govt/company/data' element={<CompanyData />} />
         <Route path='/company/data' element={<Data />} />
         <Route path='/company/' element={<CompanyIndex />} />
-            <Route path='/company/licence-transaction' element={<BuyCredits />} />
-            <Route path='/graph' element={<PollutionGraph />} />
+        <Route path='/company/licence-transaction' element={<BuyCredits />} />
+        <Route path='/graph' element={<PollutionGraph />} />
 
+        <Route path='/company/certificate' element={<Certificate />} />
 
         <Route path="*" element={<Error />} />
 
