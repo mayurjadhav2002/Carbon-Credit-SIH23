@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import Sidebar from './Sidebar'
-// import { MdGeneratingTokens, MdPendingActions } from 'react-icons/md'
-// import { FcFactory } from 'react-icons/fc'
+
 import { ImLeaf } from 'react-icons/im'
 import { Button, Input } from '@material-tailwind/react'
 import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
@@ -64,14 +63,7 @@ const BuyCredits = () => {
         isDragReject,
         isDragAccept
     ]);
-    const thumbs = files.map(file => (
-        <div key={file.name}>
-            <img
-                src={file.preview}
-                alt={file.name}
-            />
-        </div>
-    ));
+
 
     // clean up
     useEffect(() => () => {

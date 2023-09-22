@@ -2,7 +2,7 @@
 
 import { Sidebar } from 'flowbite-react';
 // HiInbox,HiUser
-import { HiArrowSmRight, HiChartPie, HiShoppingBag, HiTable, HiViewBoards } from 'react-icons/hi';
+import {  HiChartPie, HiViewBoards } from 'react-icons/hi';
 import { MdFactory, MdPendingActions } from 'react-icons/md'
 import { TbCertificate } from 'react-icons/tb'
 import { Link } from 'react-router-dom';

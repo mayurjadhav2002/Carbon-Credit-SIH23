@@ -3,10 +3,8 @@ import {
   Navbar,
   MobileNav,
   Typography,
-  // Button,
   Avatar,
   IconButton,
-  Button,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { Menu } from "@headlessui/react";
