@@ -39,6 +39,10 @@ export default function Navigation() {
     },
 
     {
+      text: "graph",
+      href: "/graph"
+    },
+    {
       text: "Company",
       href: "/company"
     },
