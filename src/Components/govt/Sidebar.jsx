@@ -36,8 +36,9 @@ export default function ContentSeparator() {
                                     </p>
                                 </Sidebar.Item>
                                 <Sidebar.Item
-                                    href="#"
-                                    icon={TbCertificate}
+                                as={Link}
+                                to={'/govt/company/certificates'}
+                                icon={TbCertificate}
                                 >
                                     <p>
                                         Certificates
@@ -49,30 +50,6 @@ export default function ContentSeparator() {
                                 >
                                     <p>
                                         Pending Approvals
-                                    </p>
-                                </Sidebar.Item>
-                                <Sidebar.Item
-                                    href="#"
-                                    icon={HiShoppingBag}
-                                >
-                                    <p>
-                                        Products
-                                    </p>
-                                </Sidebar.Item>
-                                <Sidebar.Item
-                                    href="#"
-                                    icon={HiArrowSmRight}
-                                >
-                                    <p>
-                                        Sign In
-                                    </p>
-                                </Sidebar.Item>
-                                <Sidebar.Item
-                                    href="#"
-                                    icon={HiTable}
-                                >
-                                    <p>
-                                        Sign Up
                                     </p>
                                 </Sidebar.Item>
                             </Sidebar.ItemGroup>

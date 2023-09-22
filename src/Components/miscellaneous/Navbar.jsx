@@ -24,14 +24,13 @@ export default function Navigation() {
 
 
   const NavList = [
-
     {
       text: "About",
       href: "/about"
     },
     {
       text: "Map",
-      href: "/graph"
+      href: "/demo/map"
     },
     {
       text: "Contact",
