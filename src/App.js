@@ -20,7 +20,6 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route exact path='/login' element={<Login />} />
-
         <Route path='/contact' element={<Contact />} />
 
         {/* Government */}
@@ -29,7 +28,7 @@ function App() {
 
         {/* Company */}
         <Route path='/company/data' element={<Data />} />
-        <Route path='/company/' element={<CompanyIndex />} />
+        <Route path='/company' element={<CompanyIndex />} />
         <Route path='/company/licence-transaction' element={<BuyCredits />} />
 
         <Route path='/company/certificate' element={<Certificate />} />
