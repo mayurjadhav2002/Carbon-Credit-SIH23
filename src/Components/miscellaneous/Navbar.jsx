@@ -25,29 +25,23 @@ export default function Navigation() {
 
   const NavList = [
 
-
-    {
-      text: "Contact",
-      href: "/contact"
-    },
-
     {
       text: "About",
       href: "/about"
     },
-
     {
-      text: "graph",
+      text: "Map",
       href: "/graph"
     },
+    {
+      text: "Contact",
+      href: "/contact"
+    },
+    
     {
       text: "Company",
       href: "/company"
     },
-
-
-
-
     {
       text: "Government",
       href: "/govt/dashboard"
