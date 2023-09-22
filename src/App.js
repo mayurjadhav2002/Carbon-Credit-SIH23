@@ -20,12 +20,11 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route exact path='/login' element={<Login />} />
-
         <Route path='/contact' element={<Contact />} />
         <Route path='/govt/dashboard' element={<Company />} />
         <Route path='/govt/company/data' element={<CompanyData />} />
         <Route path='/company/data' element={<Data />} />
-        <Route path='/company/' element={<CompanyIndex />} />
+        <Route path='/company' element={<CompanyIndex />} />
         <Route path='/company/licence-transaction' element={<BuyCredits />} />
         <Route path='/graph' element={<PollutionGraph />} />
 

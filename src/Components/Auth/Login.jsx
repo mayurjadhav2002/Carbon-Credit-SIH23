@@ -1,47 +1,76 @@
 import React from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router'
 import {
     Card,
-    // CardHeader,
     CardBody,
-    // Input,
-    // Typography,
     Tabs,
     TabsHeader,
     TabsBody,
     Tab,
-    TabPanel,
-    // Select,
-    // Option,
+    TabPanel
 } from "@material-tailwind/react";
-
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 
-
-
-
-
-
 function Login() {
-    // const [type, setType] = React.useState("card");
-    // const data = [
-    //     {
-    //       label: "Company Login",
-    //       value: "html",
-    //       desc: `Because it's about motivating the doers. Because I'm here
-    //       to follow my dreams and inspire other people to follow their dreams, too.`,
-    //     },
-    //     {
-    //       label: "Government Login",
-    //       value: "react",
-    //       desc: `Because it's about motivating the doers. Because I'm here
-    //       to follow my dreams and inspire other people to follow their dreams, too.`,
-    //     },
-   
-    //   ];
+    var history = useNavigate();
+    const [Govlogindetail, setGovlogindetail] = useState({ email: "", password: "" })
+    const handleclickGov = (e) => {
+        e.preventDefault();
+        Govlogin(Govlogindetail.email, Govlogindetail.password)
+    }
+    const onchangeGov = (e) => {
+        setGovlogindetail({ ...Govlogindetail, [e.target.name]: e.target.value })
+    }
+    const Govlogin = async (email, Password) => {
+        // Default options are marked with *
+        const response = await fetch('http://localhost:3001/app/Govlogin', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json;charset=UTF-8",
+            },
+            // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify({ email, Password })
+        });
+        const json = await response.json()
+        if (json.success) {
+            localStorage.setItem("token", json.jwttokenGov);
+            history("/govt/dashboard")
+        } else {
+            alert("invalid")
+        }
+    }
+
+    const [Complogindetail, setComplogindetail] = useState({ email: "", password: "" })
+    const handleclickcomp = (e) => {
+        e.preventDefault();
+        Complogin(Complogindetail.email, Complogindetail.password)
+    }
+    const onchangecomp = (e) => {
+        setComplogindetail({ ...Complogindetail, [e.target.name]: e.target.value })
+    }
+    const Complogin = async (email, Password) => {
+        // Default options are marked with *
+        const response = await fetch('http://localhost:3001/app/login', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json;charset=UTF-8",
+            },
+            // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify({ email, Password })
+        });
+        const json = await response.json()
+        if (json.success) {
+            localStorage.setItem("token", json.jwttokenComp);
+            history("/company")
+        } else {
+            alert("invalid")
+        }
+    }
+
     return (
         <div>
-
             <div className="h-screen md:flex align-middle">
                 <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
                     <div>
@@ -62,32 +91,24 @@ function Login() {
                     <div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8" />
                 </div>
                 <div className="flex md:w-1/2 justify-center align-middle items-center bg-white">
-
-
-
-
-
                     <Card className="w-full px-5 items-center justify-center  h-full align-middle my-auto bg-slate-50">
-
                         <CardBody className='mx-auto w-full'>
-
-                        <Tabs value="html"
-                            className="bg-transparent"
-                        indicatorProps={{
-                          className: "bg-gray-900/10 shadow-none !text-gray-900 p-5  hover:bg-blue-50",
-                        }}>
-                        <TabsHeader>
-                            <Tab key="html" value="html" className='p-5'>
-                              Company Login
-                            </Tab>
-                            <Tab key="Government" value="Government" className='p-5'>
-                              Government Login
-                            </Tab>
-                        </TabsHeader>
-                        <TabsBody>
-                       
-                            <TabPanel key="html" value="html">
-                            <form className="mt-12 flex flex-col gap-4 px-3">
+                            <Tabs value="html"
+                                className="bg-transparent"
+                                indicatorProps={{
+                                    className: "bg-gray-900/10 shadow-none !text-gray-900 p-5  hover:bg-blue-50",
+                                }}>
+                                <TabsHeader>
+                                    <Tab key="html" value="html" className='p-5'>
+                                        Company Login
+                                    </Tab>
+                                    <Tab key="Government" value="Government" className='p-5'>
+                                        Government Login
+                                    </Tab>
+                                </TabsHeader>
+                                <TabsBody>
+                                    <TabPanel key="html" value="html">
+                                        <form className="mt-12 flex flex-col gap-4 px-3">
                                             <h1 className='text-2xl'>Please Login with your Official Credentials</h1>
 
                                             <div>
@@ -103,6 +124,9 @@ function Login() {
                                                     required
                                                     shadow
                                                     type="email"
+                                                    name='email'
+                                                    onChange={onchangecomp}
+
                                                 />
                                             </div>
                                             <div>
@@ -117,20 +141,8 @@ function Login() {
                                                     required
                                                     shadow
                                                     type="password"
-                                                />
-                                            </div>
-                                            <div>
-                                                <div className="mb-2 block">
-                                                    <Label
-                                                        htmlFor="repeat-password"
-                                                        value="Repeat password"
-                                                    />
-                                                </div>
-                                                <TextInput
-                                                    id="repeat-password"
-                                                    required
-                                                    shadow
-                                                    type="password"
+                                                    name='password'
+                                                    onChange={onchangecomp}
                                                 />
                                             </div>
                                             <div className="flex items-center gap-2">
@@ -152,98 +164,79 @@ function Login() {
                                                     </Link>
                                                 </Label>
                                             </div>
-                                            <Button type="submit">
+                                            <Button onClick={handleclickcomp}>
                                                 Register new account
                                             </Button>
                                         </form>
+                                    </TabPanel>
+                                    <TabPanel key="Government" value="Government">
+                                        <form className="mt-12 flex flex-col gap-4 px-3">
+                                            <h1 className='text-2xl'>Please Login with your Official Credentials</h1>
 
-                        </TabPanel>
-                          
+                                            <div>
+                                                <div className="mb-2 block">
+                                                    <Label
+                                                        htmlFor="email2"
+                                                        value="Your email"
+                                                    />
+                                                </div>
+                                                <TextInput
+                                                    id="email2"
+                                                    placeholder="name@flowbite.com"
+                                                    required
+                                                    shadow
+                                                    type="email"
+                                                    name='email'
+                                                    onChange={onchangeGov}
 
-                        <TabPanel key="Government" value="Government">
-                        <form className="mt-12 flex flex-col gap-4 px-3">
-                        <h1 className='text-2xl'>Please Login with your Official Credentials</h1>
-
-                        <div>
-                            <div className="mb-2 block">
-                                <Label
-                                    htmlFor="email2"
-                                    value="Your email"
-                                />
-                            </div>
-                            <TextInput
-                                id="email2"
-                                placeholder="name@flowbite.com"
-                                required
-                                shadow
-                                type="email"
-                            />
-                        </div>
-                        <div>
-                            <div className="mb-2 block">
-                                <Label
-                                    htmlFor="password2"
-                                    value="Your password"
-                                />
-                            </div>
-                            <TextInput
-                                id="password2"
-                                required
-                                shadow
-                                type="password"
-                            />
-                        </div>
-                        <div>
-                            <div className="mb-2 block">
-                                <Label
-                                    htmlFor="repeat-password"
-                                    value="Repeat password"
-                                />
-                            </div>
-                            <TextInput
-                                id="repeat-password"
-                                required
-                                shadow
-                                type="password"
-                            />
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Checkbox id="agree" />
-                            <Label
-                                className="flex"
-                                htmlFor="agree"
-                            >
-                                <p>
-                                    I agree with the
-                                </p>
-                                <Link
-                                    className="text-cyan-600 hover:underline dark:text-cyan-500"
-                                    to={'/'}
-                                >
-                                    <p>
-                                        terms and conditions
-                                    </p>
-                                </Link>
-                            </Label>
-                        </div>
-                        <Button type="submit">
-                            Register new account
-                        </Button>
-                    </form>
-                        </TabPanel>
-                          
-                        </TabsBody>
-                      </Tabs>
-
-
-
-
+                                                />
+                                            </div>
+                                            <div>
+                                                <div className="mb-2 block">
+                                                    <Label
+                                                        htmlFor="password2"
+                                                        value="Your password"
+                                                    />
+                                                </div>
+                                                <TextInput
+                                                    id="password2"
+                                                    required
+                                                    shadow
+                                                    type="password"
+                                                    name='password'
+                                                    onChange={onchangeGov}
+                                                />
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <Checkbox id="agree" />
+                                                <Label
+                                                    className="flex"
+                                                    htmlFor="agree"
+                                                >
+                                                    <p>
+                                                        I agree with the
+                                                    </p>
+                                                    <Link
+                                                        className="text-cyan-600 hover:underline dark:text-cyan-500"
+                                                        to={'/'}
+                                                    >
+                                                        <p>
+                                                            terms and conditions
+                                                        </p>
+                                                    </Link>
+                                                </Label>
+                                            </div>
+                                            <Button onClick={handleclickGov}>
+                                                Register new account
+                                            </Button>
+                                        </form>
+                                    </TabPanel>
+                                </TabsBody>
+                            </Tabs>
                         </CardBody>
                     </Card>
-
                 </div>
             </div>
-
         </div>
     )
 }
