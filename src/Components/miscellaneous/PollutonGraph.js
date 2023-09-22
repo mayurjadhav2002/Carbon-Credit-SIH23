@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import L from 'leaflet';
 import data from './data.json';
-import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Circle, useMap } from 'react-leaflet';
 import customIcon1 from './industry.png';
 
 const PollutionGraph = () => {
+  const [iconSize, setIconSize] = useState([32, 32]); // Initial icon size
+
   const customIcon = L.icon({
     iconUrl: customIcon1,
-    iconSize: [32, 32],
+    iconSize: iconSize,
   });
 
   function calculateCircleRadius(zoom) {
@@ -15,7 +17,6 @@ const PollutionGraph = () => {
     return 1000;
   }
 
-  // Create an array of markers from your data
   const markers = data.map((marker, index) => ({
     position: [marker.Latitude, marker.Longitude],
     title: marker.CompanyName,
@@ -32,7 +33,6 @@ const PollutionGraph = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        {/* Add Markers, Circles, etc. here */}
         {markers.map((marker, index) => (
           <Marker
             key={index}
@@ -45,15 +45,40 @@ const PollutionGraph = () => {
           >
             <Circle
               center={marker.position}
-              radius={calculateCircleRadius(18)} // Adjust the zoom level as needed
+              radius={calculateCircleRadius(13)}
               pathOptions={{ color: 'green' }}
             />
             <Popup>{marker.title}</Popup>
           </Marker>
         ))}
+        {/* CustomHook to access the map's zoom level */}
+        <ZoomSizeUpdater setIconSize={setIconSize} />
       </MapContainer>
     </div>
   );
 };
+
+// CustomHook to update icon size based on map's zoom level
+function ZoomSizeUpdater({ setIconSize }) {
+  const map = useMap();
+
+  // Update icon size when the zoom level changes
+  useEffect(() => {
+    function updateIconSize() {
+      const zoom = map.getZoom();
+      // You can adjust the size logic as needed
+      const newSize = zoom < 10 ? [0, 0] : zoom < 15 ? [32, 32] : [30, 30];
+      setIconSize(newSize);
+    }
+
+    map.on('zoomend', updateIconSize);
+    updateIconSize(); // Initial size
+    return () => {
+      map.off('zoomend', updateIconSize);
+    };
+  }, [map, setIconSize]);
+
+  return null;
+}
 
 export default PollutionGraph;
