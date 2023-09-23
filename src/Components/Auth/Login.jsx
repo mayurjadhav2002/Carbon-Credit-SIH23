@@ -23,20 +23,24 @@ function Login() {
     const onchangeGov = (e) => {
         setGovlogindetail({ ...Govlogindetail, [e.target.name]: e.target.value })
     }
-    const Govlogin = async (email, Password) => {
+    const Govlogin = async (Email, Password) => {
         // Default options are marked with *
-        const response = await fetch('http://localhost:3001/app/Govlogin', {
+        const response = await fetch('https://manish-ka-carbon-ka-gota.onrender.com/app/Govlogin', {
             method: "POST",
             headers: {
                 "Content-type": "application/json;charset=UTF-8",
             },
             // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify({ email, Password })
+            body: JSON.stringify({ Email, Password })
         });
         const json = await response.json()
-        if (json.success) {
-            localStorage.setItem("token", json.jwttokenGov);
+        if (json.jwttoken) {
+            if (localStorage.getItem("Comptoken")) {
+                localStorage.removeItem("Comptoken");
+              }
+            localStorage.setItem("Govtoken", json.jwttoken);
             history("/govt/dashboard")
+            window.location.reload();
         } else {
             alert("invalid")
         }
@@ -50,20 +54,24 @@ function Login() {
     const onchangecomp = (e) => {
         setComplogindetail({ ...Complogindetail, [e.target.name]: e.target.value })
     }
-    const Complogin = async (email, Password) => {
+    const Complogin = async (Email, Password) => {
         // Default options are marked with *
-        const response = await fetch('http://localhost:3001/app/login', {
+        const response = await fetch('https://manish-ka-carbon-ka-gota.onrender.com/app/login', {
             method: "POST",
             headers: {
                 "Content-type": "application/json;charset=UTF-8",
             },
             // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify({ email, Password })
+            body: JSON.stringify({ Email, Password })
         });
         const json = await response.json()
-        if (json.success) {
-            localStorage.setItem("token", json.jwttokenComp);
+        if (json.jwttoken) {
+            if (localStorage.getItem("Govtoken")) {
+                localStorage.removeItem("Govtoken");
+              }
+            localStorage.setItem("Comptoken", json.jwttoken);
             history("/company")
+            window.location.reload();
         } else {
             alert("invalid")
         }
