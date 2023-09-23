@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {
   Navbar,
   MobileNav,
@@ -8,19 +8,59 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { Menu } from "@headlessui/react";
+import { useNavigate } from 'react-router'
 // import { Fragment } from 'react'
-import {MdAccountBalance} from 'react-icons/md'
+import { MdAccountBalance } from 'react-icons/md'
 
 export default function Navigation() {
-  const login = false;
+  var history = useNavigate();
   const [openNav, setOpenNav] = React.useState(false);
+  const [Comp, setComp] = React.useState(false);
+  const [Gov, setGov] = React.useState(false);
 
-  React.useEffect(() => {
+  const logout = (e) => {
+    e.preventDefault();
+    if (localStorage.getItem("Comptoken")) {
+      localStorage.removeItem("Comptoken");
+      setComp(false)
+    }
+    if (localStorage.getItem("Govtoken")) {
+      localStorage.removeItem("Govtoken");
+      setGov(false)
+    }
+    history("/login")
+  }
+  useEffect(() => {
+    if (localStorage.getItem("Govtoken")) {
+      setGov(true)
+    } else {
+      setGov(false)
+    }
+    if (localStorage.getItem("Comptoken")) {
+      setComp(true)
+    }
+    else {
+      setComp(false)
+    }
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("Govtoken")) {
+      setGov(true)
+    } else {
+      setGov(false)
+    }
+    if (localStorage.getItem("Comptoken")) {
+      setComp(true)
+    }
+    else {
+      setComp(false)
+    }
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false),
     );
-  }, []);
+  }, [Comp,Gov]);
 
 
   const NavList = [
@@ -35,17 +75,7 @@ export default function Navigation() {
     {
       text: "Contact",
       href: "/contact"
-    },
-    
-    {
-      text: "Company",
-      href: "/company"
-    },
-    {
-      text: "Government",
-      href: "/govt/dashboard"
-    },
-
+    }
   ]
 
   const navList = (
@@ -123,45 +153,69 @@ export default function Navigation() {
                   </Link>
                 </Typography>
               )}
+              {
+                Comp && (<Typography
+                  as="li"
+                  variant="small"
+                  color="blue-gray"
+                  className="p-1 font-normal"
+                >
+                  <Link to="/company" className="flex items-center">
+                    Company
+                  </Link>
+                </Typography>)
+              }
 
+              {Gov &&
+                (<Typography
+                  as="li"
+                  variant="small"
+                  color="blue-gray"
+                  className="p-1 font-normal"
+                >
+                  <Link to="/govt/dashboard" className="flex items-center">
+                    Government
+                  </Link>
+                </Typography>)
+              }
             </ul>
           </div>
-{!login ? 
-          <div className="flex w-max gap-4">
-         
-          <Link to="/login" className="flex items-center gap-3 text-white bg-blue-500 hover:bg-blue-800 
-          font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> <MdAccountBalance className="text-xl"/>Go to Dashboard</Link>
-   
-        </div>
-:
-          <Menu>
-            <Menu.Button>
-              <div className="flex items-center gap-4">
-                <Avatar src="https://www.material-tailwind.com/img/face-2.jpg" alt="avatar" variant="rounded" />
-                <div>
-                  <Typography variant="h6">Mayur Jadhav</Typography>
-                  <Typography variant="small" color="gray" className="font-normal">
-                    Web Developer
-                  </Typography>
+          {!(Comp || Gov) ?
+            <div className="flex w-max gap-4">
+
+              <Link to="/login" className="flex items-center gap-3 text-white bg-blue-500 hover:bg-blue-800 
+          font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> <MdAccountBalance className="text-xl" />Go to Dashboard</Link>
+
+            </div>
+            :
+            <Menu>
+              <Menu.Button>
+                <div className="flex items-center gap-4">
+                  <Avatar src="https://www.material-tailwind.com/img/face-2.jpg" alt="avatar" variant="rounded" />
+                  <div>
+                    <Typography variant="h6">Mayur Jadhav</Typography>
+                    <Typography variant="small" color="gray" className="font-normal">
+                      Web Developer
+                    </Typography>
+                  </div>
                 </div>
-              </div>
 
-            </Menu.Button>
-            
-            <Menu.Items className={"absolute right-5 w-40 text-center  shadow-md px-6 py-3 top-20 bg-white"}>
-              <Menu.Item
-              as="a"
-              key={2}
-              href={"jndas"}
-              className="ui-active:bg-blue-500 ui-active:text-white ui-not-active:bg-white ui-not-active:text-black"
-      
-              >Logout
-              </Menu.Item>
-            </Menu.Items>
-            
+              </Menu.Button>
 
-          </Menu>
-        }
+              <Menu.Items className={"absolute right-5 w-40 text-center  shadow-md px-6 py-3 top-20 bg-white"}>
+                <Menu.Item
+                  as="a"
+                  key={2}
+                  href={"jndas"}
+                  className="ui-active:bg-blue-500 ui-active:text-white ui-not-active:bg-white ui-not-active:text-black"
+                  onClick={logout}
+                >Logout
+                </Menu.Item>
+              </Menu.Items>
+
+
+            </Menu>
+          }
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -200,7 +254,7 @@ export default function Navigation() {
             )}
           </IconButton>
         </div>
-        <MobileNav open={openNav}> 
+        <MobileNav open={openNav}>
           <div className="container mx-auto">
             {navList}
             <div class="px-4 py-3">
