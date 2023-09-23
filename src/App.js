@@ -14,6 +14,7 @@ import BuyCredits from "./Components/Company/BuyCredits";
 import PollutionGraph from './Components/miscellaneous/PollutonGraph'
 import Certificate from "./Components/Company/Certificate";
 import GovtCertificate from "./Components/govt/GovtCertificate";
+import GenerateCerticate from "./Components/govt/utils/GenerateCerticate";
 function App() {
   return (
     <div className="w-full">
@@ -34,7 +35,7 @@ function App() {
         <Route path='/company/licence-transaction' element={<BuyCredits />} />
 
         <Route path='/company/certificate' element={<Certificate />} />
-
+<Route path="/govt/company/certificates/generate" element={<GenerateCerticate />}></Route>
 
 
         {/* Miscellanous */}

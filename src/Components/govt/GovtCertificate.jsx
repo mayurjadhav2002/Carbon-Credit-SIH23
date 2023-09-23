@@ -4,6 +4,7 @@ import { AiOutlineDownload, AiFillEye } from 'react-icons/ai'
 import ApprovedCertificates from './utils/ApprovedCertificates'
 import { Select, Option } from "@material-tailwind/react";
 import { Link } from 'react-router-dom';
+import { Button } from 'flowbite-react';
 
 const GovtCertificate = () => {
     const [state, setState] = useState("")
@@ -38,9 +39,9 @@ const GovtCertificate = () => {
                     </div>
                     <div className='border-l-4 border-gray-300 w-1/5 h-auto p-4'>
                     
-                    <Link to={'/govt/company/certificates/generate'}  className='px-4 py-2 bg-green-500 text-white
+                    <Button as={Link} to={'/govt/company/certificates/generate'}  className='px-4 py-2 bg-green-500 text-white
                    text-xl font-bold rounded-lg mx-auto text-center w-full
-                    '>Generate New Certificate</Link>
+                    '>Generate New Certificate</Button>
                     <div className='text-ellipsis py-4'>
                     <p className='text-sans line-clamp-6 break-words my-4'>
                     Issuing certificates to companies that have effectively reduced their carbon emissions and used fewer carbon credits serves as a powerful incentive for sustainable practices. </p>
