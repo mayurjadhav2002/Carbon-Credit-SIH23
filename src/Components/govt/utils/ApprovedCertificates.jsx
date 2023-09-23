@@ -2,22 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function ApprovedCertificates() {
-    const [ state, setState ] = useState([])
-    const [accessToken, setAccessToken] = useState('')
-    const [url , setUrl] = useState('https://www.universal-tutorial.com/api/getaccesstoken')
-    const [ isLoading, setIsLoading ] = useState(false)
-    const [ error, setError ] = useState(null)
 
-
-//   req.headers({
-//     "Accept": "application/json",
-//     "api-token": "u9dy1zmd7m0vG2zTuMSZZONbinEDL5jizyb0lTTItP348HEJ-5TSOq-zIrtvRev_4lM",
-//     "user-email": "goxolad708@bookspre.com"
-//   });
     const header = [
-        {name: "company Name"},
-        {name: "date"},
-        {name:"Certificate URL"}
+        {name: "Company Name"},
+        {name: "Date"},
+        {name:"Certificate URL"},
+        {name: "Signed By"},
+        {name: "Total Consumption"},
+
+
     ]
     const data = [
         {
@@ -27,22 +20,14 @@ function ApprovedCertificates() {
             url: "url"
         }
     ]
-    useEffect(  () => {
-         fetch(url, {headers: {
-            "Accept": "application/json",
-            "api-token": "u9dy1zmd7m0vG2zTuMSZZONbinEDL5jizyb0lTTItP348HEJ-5TSOq-zIrtvRev_4lM",
-            "user-email": "goxolad708@bookspre.com"
-        }})
-        .then(res => {console.log(res.json())        })
-      
-        .catch(error => {
-            setError(error)
-        })
-    }, [url])
+
+
   return (
-    <div>
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
+    <div >
+
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
                         <tr>
 
                         {header.map((data, index)=> 
@@ -53,10 +38,10 @@ function ApprovedCertificates() {
                            
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='h-2/4 overflow-scroll'>
                        
                         {data.map((data, index)=>
-                            <tr key={data.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                            <tr key={data.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
                             <th key="index" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {data.company}
                             </th>
