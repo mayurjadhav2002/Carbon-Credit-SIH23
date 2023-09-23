@@ -73,10 +73,10 @@ function Login() {
         <div>
             <div className="h-screen md:flex align-middle">
                 <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
-                    <div>
-                        <h1 className="text-white font-bold text-4xl font-sans">GoFinance</h1>
+                    <div className='px-5 w-4/5'>
+                        <h1 className="text-white font-bold text-4xl font-sans">Sustainable, Transparent, and Efficienty Credit System</h1>
                         <p className="text-white mt-1">
-                            The most popular peer to peer lending at SEA
+                           
                         </p>
                         <button
                             type="submit"
@@ -177,7 +177,7 @@ function Login() {
                                                 <div className="mb-2 block">
                                                     <Label
                                                         htmlFor="email2"
-                                                        value="Your email"
+                                                        value="Your UTP"
                                                     />
                                                 </div>
                                                 <TextInput
