@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import L from 'leaflet';
 import data from './data.json';
-import { MapContainer, TileLayer, Marker, Popup, Circle, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup,useMap } from 'react-leaflet';
 import customIcon1 from './industry.png';
 
 const PollutionGraph = () => {
@@ -11,12 +11,6 @@ const PollutionGraph = () => {
     iconUrl: customIcon1,
     iconSize: iconSize,
   });
-
-  function calculateCircleRadius(zoom) {
-    // You can modify this function to calculate the circle radius based on zoom level
-    return 1000;
-  }
-
   const markers = data.map((marker, index) => ({
     position: [marker.Latitude, marker.Longitude],
     title: marker.CompanyName,
@@ -46,7 +40,6 @@ const PollutionGraph = () => {
             <Popup>{marker.title}</Popup>
           </Marker>
         ))}
-        {/* CustomHook to access the map's zoom level */}
         <ZoomSizeUpdater setIconSize={setIconSize} />
       </MapContainer>
     </div>

@@ -1,22 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useState,useEffect } from 'react'
-function TableData() {
-    const noteinitial = []
-    const [Note, setfactory] = useState(noteinitial)
-    var back="https://manish-ka-carbon-ka-gota.onrender.com/"
-    const getfactory = async () => {
-        const response = await fetch(`https://manish-ka-carbon-ka-gota.onrender.com/app/getfactory`, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json;charset=UTF-8",
-            }
-        });
-        const json=await response.json()
-        console.log(json)
-        setfactory(json.factory)
-    }
+import {useEffect,useContext,useState} from 'react'
+import Datacontext from '../../../context/Datacontext';
 
+function TableData() {
+    var context = useContext(Datacontext);
+    var { getfactory,factory} = context
+    
     const header=[
         {name: 'Company Name'},
         {name: 'Industry'},
@@ -28,9 +18,10 @@ function TableData() {
         {name: 'Eligible of CC'},
     ]
     const data = [].concat(
-        ...Note.map((marker) => {
+        ...factory.map((marker) => {
           var main = marker.Data;
           return main.map((mark) => ({
+            key:mark._id,
             id: mark._id,
             name: mark.CompanyName,
             industry: mark.Product,
@@ -43,11 +34,12 @@ function TableData() {
           }));
         })
       );
-      console.log(data)
       useEffect(() => {
-        getfactory()
-        getfactory()
-    }, [])
+        if (factory.length === 0) {
+            getfactory();
+            getfactory();
+        }
+    }, [factory])
     return (
         <div>
 

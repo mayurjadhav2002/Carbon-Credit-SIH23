@@ -18,39 +18,42 @@ import Governmap from "./Components/govt/Governmap";
 import GenerateCerticate from "./Components/govt/utils/GenerateCerticate";
 import PendingApprovals from "./Components/govt/PendingApprovals";
 import ViewDetails from "./Components/govt/ViewDetails";
+import Datastate from "./context/Datastate"
 function App() {
   return (
-    <div className="w-full">
-      <Navbar />
-      <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route exact path='/login' element={<Login />} />
-        <Route path='/contact' element={<Contact />} />
+    <Datastate>
+      <div className="w-full">
+        <Navbar />
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/login' element={<Login />} />
+          <Route path='/contact' element={<Contact />} />
 
-        {/* Government */}
-        <Route path='/govt/dashboard' element={<Company />} />
-        <Route path='/govt/company/data' element={<CompanyData />} />
-        <Route path='/govt/company/certificates' element={<GovtCertificate />} />
-        <Route path='/govt/map' element={<Governmap/>} />
-        <Route path="/govt/company/certificates/generate" element={<GenerateCerticate />}></Route>
-        <Route path="/govt/company/approvals" element={<PendingApprovals />}></Route>
-        <Route path="/govt/company/approvals/details/:id" element={<ViewDetails />}></Route>
-        
-        {/* Company */}
-        <Route path='/company/data' element={<Data />} />
-        <Route path='/company' element={<CompanyIndex />} />
-        <Route path='/company/licence-transaction' element={<BuyCredits />} />
+          {/* Government */}
+          <Route path='/govt/dashboard' element={<Company />} />
+          <Route path='/govt/company/data' element={<CompanyData />} />
+          <Route path='/govt/company/certificates' element={<GovtCertificate />} />
+          <Route path='/govt/map' element={<Governmap />} />
+          <Route path="/govt/company/certificates/generate" element={<GenerateCerticate />}></Route>
+          <Route path="/govt/company/approvals" element={<PendingApprovals />}></Route>
+          <Route path="/govt/company/approvals/details/:id" element={<ViewDetails />}></Route>
 
-        <Route path='/company/certificate' element={<Certificate />} />
+          {/* Company */}
+          <Route path='/company/data' element={<Data />} />
+          <Route path='/company' element={<CompanyIndex />} />
+          <Route path='/company/licence-transaction' element={<BuyCredits />} />
+
+          <Route path='/company/certificate' element={<Certificate />} />
 
 
-        {/* Miscellanous */}
+          {/* Miscellanous */}
 
-        <Route path='/demo/map' element={<PollutionGraph />} />
-        <Route path="*" element={<Error />} />
+          <Route path='/demo/map' element={<PollutionGraph />} />
+          <Route path="*" element={<Error />} />
 
-      </Routes>
-    </div>
+        </Routes>
+      </div>
+    </Datastate>
   );
 }
 
