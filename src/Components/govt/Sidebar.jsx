@@ -45,6 +45,15 @@ export default function ContentSeparator() {
                                     </p>
                                 </Sidebar.Item>
                                 <Sidebar.Item
+                                as={Link}
+                                to={'/govt/map'}
+                                icon={TbCertificate}
+                                >
+                                    <p>
+                                        Carbon Radius
+                                    </p>
+                                </Sidebar.Item>
+                                <Sidebar.Item
                                     href="#"
                                     icon={MdPendingActions}
                                 >

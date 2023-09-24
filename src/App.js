@@ -14,6 +14,7 @@ import BuyCredits from "./Components/Company/BuyCredits";
 import PollutionGraph from './Components/miscellaneous/PollutonGraph'
 import Certificate from "./Components/Company/Certificate";
 import GovtCertificate from "./Components/govt/GovtCertificate";
+import Governmap from "./Components/govt/Governmap";
 function App() {
   return (
     <div className="w-full">
@@ -27,6 +28,7 @@ function App() {
         <Route path='/govt/dashboard' element={<Company />} />
         <Route path='/govt/company/data' element={<CompanyData />} />
         <Route path='/govt/company/certificates' element={<GovtCertificate />} />
+        <Route path='/govt/map' element={<Governmap/>} />
 
         {/* Company */}
         <Route path='/company/data' element={<Data />} />

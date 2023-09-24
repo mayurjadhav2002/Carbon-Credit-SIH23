@@ -1,30 +1,53 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { useState,useEffect } from 'react'
 function TableData() {
+    const noteinitial = []
+    const [Note, setfactory] = useState(noteinitial)
+    var back="https://manish-ka-carbon-ka-gota.onrender.com/"
+    const getfactory = async () => {
+        const response = await fetch(`https://manish-ka-carbon-ka-gota.onrender.com/app/getfactory`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json;charset=UTF-8",
+            }
+        });
+        const json=await response.json()
+        console.log(json)
+        setfactory(json.factory)
+    }
+
     const header=[
         {name: 'Company Name'},
         {name: 'Industry'},
-        {name: 'Type'},
+        {name: 'Size'},
         {name: 'Project Details'},
         {name: 'Status'},
         {name: 'Limits'},
         {name: 'Issues'},
         {name: 'Eligible of CC'},
     ]
-    const data =[
-        {
-            id: '1',
-            name: "Apple",
-            industry: "Automobile",
-            type: "Org",
+    const data = [].concat(
+        ...Note.map((marker) => {
+          var main = marker.Data;
+          return main.map((mark) => ({
+            id: mark._id,
+            name: mark.CompanyName,
+            industry: mark.Product,
+            size: mark.Size,
             project_details: 'https://details',
             status: 'pending',
-            limits: 45151,
-            issues: 812,
-            eligible: 'No'
-        }
-    ]
+            limits: mark.CarbonEmissionLimit,
+            issues: mark.CarbonEmissionsProduction,
+            eligible: 'No',
+          }));
+        })
+      );
+      console.log(data)
+      useEffect(() => {
+        getfactory()
+        getfactory()
+    }, [])
     return (
         <div>
 
@@ -53,7 +76,7 @@ function TableData() {
                                 {data.industry}
                             </td>
                             <td class="px-6 py-4">
-                                {data.type}
+                                {data.size}
                             </td>
                             <td class="px-6 py-4">
                             <Link to={data.project_details} class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</Link>
