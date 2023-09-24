@@ -43,11 +43,6 @@ const PollutionGraph = () => {
             }}
             icon={customIcon}
           >
-            <Circle
-              center={marker.position}
-              radius={calculateCircleRadius(13)}
-              pathOptions={{ color: 'green' }}
-            />
             <Popup>{marker.title}</Popup>
           </Marker>
         ))}
