@@ -15,6 +15,9 @@ import PollutionGraph from './Components/miscellaneous/PollutonGraph'
 import Certificate from "./Components/Company/Certificate";
 import GovtCertificate from "./Components/govt/GovtCertificate";
 import Governmap from "./Components/govt/Governmap";
+import GenerateCerticate from "./Components/govt/utils/GenerateCerticate";
+import PendingApprovals from "./Components/govt/PendingApprovals";
+import ViewDetails from "./Components/govt/ViewDetails";
 function App() {
   return (
     <div className="w-full">
@@ -29,14 +32,16 @@ function App() {
         <Route path='/govt/company/data' element={<CompanyData />} />
         <Route path='/govt/company/certificates' element={<GovtCertificate />} />
         <Route path='/govt/map' element={<Governmap/>} />
-
+        <Route path="/govt/company/certificates/generate" element={<GenerateCerticate />}></Route>
+        <Route path="/govt/company/approvals" element={<PendingApprovals />}></Route>
+        <Route path="/govt/company/approvals/details/:id" element={<ViewDetails />}></Route>
+        
         {/* Company */}
         <Route path='/company/data' element={<Data />} />
         <Route path='/company' element={<CompanyIndex />} />
         <Route path='/company/licence-transaction' element={<BuyCredits />} />
 
         <Route path='/company/certificate' element={<Certificate />} />
-
 
 
         {/* Miscellanous */}

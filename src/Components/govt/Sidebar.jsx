@@ -54,7 +54,8 @@ export default function ContentSeparator() {
                                     </p>
                                 </Sidebar.Item>
                                 <Sidebar.Item
-                                    href="#"
+                                as={Link}
+                                to={'/govt/company/approvals'}
                                     icon={MdPendingActions}
                                 >
                                     <p>
