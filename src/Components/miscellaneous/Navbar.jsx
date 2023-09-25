@@ -196,7 +196,7 @@ export default function Navigation() {
             <Menu>
               <Menu.Button>
                 <div className="flex items-center gap-4">
-                  <Avatar src={`${back}static/company.png`} alt="avatar" variant="rounded" />
+                  <Avatar src={`${back}${factoryuser.Image}`} alt="avatar" variant="rounded" />
                   <div>
                     <Typography variant="h6">{factoryuser.Name}</Typography>
                     <Typography variant="small" color="gray" className="font-normal">
