@@ -7,6 +7,7 @@ import Datacontext from '../../context/Datacontext';
 const Governmap = () => {
   var context = useContext(Datacontext);
   const [iconSize, setIconSize] = useState([32, 32]);
+  const [circleRadius, setCircleRadius] = useState(1000);
   var {getfactory,factory} = context
   const customIcon = L.icon({
     iconUrl: customIcon1,
@@ -20,6 +21,7 @@ const Governmap = () => {
         getfactory();
         getfactory();
     }
+    console.log()
 }, [factory])
 
 
@@ -37,31 +39,27 @@ const Governmap = () => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   />
-                  {factory.length > 0 && factory.map((marker, mainindex) => {
-                    var main = marker.Data
-                    const dynamicRadius = calculateDynamicRadius(main.length);
+                  {factory.length > 0 && factory.map((marker) => {
                     return (
                       <>
-
-                        <Circle center={[marker.AvgLatitude, marker.AvgLongitude]} radius={dynamicRadius}
-                          pathOptions={{ color: 'green' }} />
-                        {main.map((mark, index) => {
-                          return (
+                        <Circle center={[marker.Latitude, marker.Longitude]} radius={circleRadius}
+                          pathOptions={{ fillColor: 'red',
+    fillOpacity: 0.2,
+    color: 'transparent',}} />
                             <Marker
-                              key={mark._id}
-                              id={mark.CompanyName}
-                              position={[mark.Latitude, mark.Longitude]}
+                              key={marker._id}
+                              id={marker.CompanyName}
+                              position={[marker.Latitude, marker.Longitude]}
                               eventHandlers={{
                                 click: handleMarkerClick,
                               }}
                               icon={customIcon}
                             >
-                              <Popup>{mark.CompanyName}</Popup>
+        <ZoomSizeUpdater setIconSize={setIconSize} />
+
+                              <Popup>{marker.CompanyName}</Popup>
 
                             </Marker>
-                          )
-                        })}
-
                       </>
                     )
                   })}
@@ -74,11 +72,28 @@ const Governmap = () => {
       </div>
     </>
   )
-  function calculateDynamicRadius(numMarkers) {
-    const minimumRadius = 100;
-    const dynamicRadius = minimumRadius + numMarkers * 100; 
+  function ZoomSizeUpdater({ setIconSize }) {
+    const map = useMap();
+  
+    // Update icon size when the zoom level changes
+    useEffect(() => {
+      function updateIconSize() {
+        const zoom = map.getZoom();
+        const newSize = zoom < 10 ? [4, 4] : zoom < 15 ? [15, 15] : [30, 30];
+        setIconSize(newSize);
+        const newRadius = zoom < 10 ? 1000 : zoom < 15 ? 750 : 500;
+                      setCircleRadius(newRadius);
 
-    return dynamicRadius;
+      }
+  
+      map.on('zoomend', updateIconSize);
+      updateIconSize(); // Initial size
+      return () => {
+        map.off('zoomend', updateIconSize);
+      };
+    }, [map, setIconSize]);
+  
+    return null;
   }
 }
 

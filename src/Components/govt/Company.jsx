@@ -78,6 +78,7 @@ const Company = () => {
       },
     ],
   };
+  
   return (
     <div className='flex justify-start gap-5'>
 

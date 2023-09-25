@@ -34,11 +34,16 @@ function Login() {
             body: JSON.stringify({ Email, Password })
         });
         const json = await response.json()
+        
         if (json.jwttoken) {
             if (localStorage.getItem("Comptoken")) {
                 localStorage.removeItem("Comptoken");
               }
             localStorage.setItem("Govtoken", json.jwttoken);
+            if (localStorage.getItem("factoryuser")) {
+                localStorage.removeItem("factoryuser");
+              }
+            localStorage.setItem("factoryuser", JSON.stringify(json.customer));
             history("/govt/dashboard")
             window.location.reload();
         } else {
@@ -70,6 +75,10 @@ function Login() {
                 localStorage.removeItem("Govtoken");
               }
             localStorage.setItem("Comptoken", json.jwttoken);
+            if (localStorage.getItem("factoryuser")) {
+                localStorage.removeItem("factoryuser");
+              }
+            localStorage.setItem("factoryuser", JSON.stringify(json.customer));
             history("/company")
             window.location.reload();
         } else {
