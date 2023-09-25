@@ -12,8 +12,7 @@ await setLoading(!loading)
 }
 
     const getfactory = async () => {
-        await functinloading();
-        const response = await fetch(`${back}app/getfactory`, {
+        const response = await fetch(`${back}/app/getfactory`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json;charset=UTF-8",
@@ -25,11 +24,9 @@ await setLoading(!loading)
         setfactoryuser(JSON.parse(localStorage.getItem("factoryuser")))
         
     }
-    await functinloading();
-
     }
     const getcertificate = async () => {
-        await functinloading();
+        // await functinloading();
 
         const response = await fetch(`${back}/app/getcertificate`, {
             method: "POST",
@@ -38,13 +35,13 @@ await setLoading(!loading)
             }
         });
         const json = await response.json()
-       await setcertificate(json.certificate)
-        await functinloading();
+        setcertificate(json.certificate)
+        // await functinloading();
 
     }
 
     return (
-        <Datacontext.Provider value={{getfactory,factory,factoryuser, loading}}>
+        <Datacontext.Provider value={{getfactory,factory,factoryuser,getcertificate, loading,cartificate}}>
             {props.children}
         </Datacontext.Provider>
     )

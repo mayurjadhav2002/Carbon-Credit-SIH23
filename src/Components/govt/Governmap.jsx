@@ -21,7 +21,6 @@ const Governmap = () => {
         getfactory();
         getfactory();
     }
-    console.log()
 }, [factory])
 
 
