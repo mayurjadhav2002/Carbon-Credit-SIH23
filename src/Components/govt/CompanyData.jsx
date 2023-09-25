@@ -5,7 +5,6 @@ import Sidebar from './Sidebar'
 import TableData from './utils/TableData'
 
 
-
 const CompanyData = () => {
 
     return (
@@ -16,7 +15,7 @@ const CompanyData = () => {
                 <div class="rounded-lg dark:border-gray-700 mt-14">
 
 
-                    <div class=" items-center w-full justify-center mb-4  bg-white dark:bg-gray-800">
+                    <div class=" items-center w-full justify-center mb-4 px-4 bg-white dark:bg-gray-800">
                     <h1 className='py-5 text-2xl font-bold'>Industrial Information</h1>
 
                         <TableData/>

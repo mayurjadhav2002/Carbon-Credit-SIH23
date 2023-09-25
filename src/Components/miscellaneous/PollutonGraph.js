@@ -19,7 +19,9 @@ const PollutionGraph = () => {
   const handleMarkerClick = (event) => {
     alert(`Marker clicked: ${event.target.options.id}`);
   };
-
+const handleMarkerHover = (e)=>{
+  console.log(`Marker hover :  ${e.target.options.id}`)
+}
   return (
     <div>
       <MapContainer center={[19.097750771165753, 72.88665980683194]} zoom={13} style={{ height: '100vh' }}>
@@ -34,6 +36,7 @@ const PollutionGraph = () => {
             position={marker.position}
             eventHandlers={{
               click: handleMarkerClick,
+              hover: handleMarkerHover,
             }}
             icon={customIcon}
           >

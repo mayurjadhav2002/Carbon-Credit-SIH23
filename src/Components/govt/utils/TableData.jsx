@@ -5,8 +5,7 @@ import Datacontext from '../../../context/Datacontext';
 
 function TableData() {
     var context = useContext(Datacontext);
-    var { getfactory,factory} = context
-    
+    var { getfactory,factory, loading} = context
     const header=[
         {name: 'Company Name'},
         {name: 'Industry'},
@@ -26,7 +25,7 @@ function TableData() {
             name: mark.CompanyName,
             industry: mark.Product,
             size: mark.Size,
-            project_details: 'https://details',
+            project_details: `/govt/dashboard/company/${mark._id}/document`,
             status: 'pending',
             limits: mark.CarbonEmissionLimit,
             issues: mark.CarbonEmissionsProduction,
@@ -36,7 +35,6 @@ function TableData() {
       );
       useEffect(() => {
         if (factory.length === 0) {
-            getfactory();
             getfactory();
         }
     }, [factory])
@@ -57,9 +55,11 @@ function TableData() {
                            
                         </tr>
                     </thead>
+
+
                     <tbody>
-                       
-                        {data.map((data, index)=>
+                       {loading ? "Loading...": 
+                     data.map((data, index)=>
                             <tr key={data.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
                             <th key="index" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {data.name}
