@@ -1,7 +1,7 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useContext} from "react";
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Typography,
   Avatar,
   IconButton,
@@ -11,9 +11,12 @@ import { Menu } from "@headlessui/react";
 import { useNavigate } from 'react-router'
 // import { Fragment } from 'react'
 import { MdAccountBalance } from 'react-icons/md'
+import Datacontext from '../../context/Datacontext';
 
 export default function Navigation() {
   var history = useNavigate();
+  var context = useContext(Datacontext);
+  var {factoryuser,back} = context
   const [openNav, setOpenNav] = React.useState(false);
   const [Comp, setComp] = React.useState(false);
   const [Gov, setGov] = React.useState(false);
@@ -22,10 +25,12 @@ export default function Navigation() {
     e.preventDefault();
     if (localStorage.getItem("Comptoken")) {
       localStorage.removeItem("Comptoken");
+      localStorage.removeItem("factoryuser");
       setComp(false)
     }
     if (localStorage.getItem("Govtoken")) {
       localStorage.removeItem("Govtoken");
+      localStorage.removeItem("factoryuser");
       setGov(false)
     }
     history("/login")
@@ -191,11 +196,11 @@ export default function Navigation() {
             <Menu>
               <Menu.Button>
                 <div className="flex items-center gap-4">
-                  <Avatar src="https://www.material-tailwind.com/img/face-2.jpg" alt="avatar" variant="rounded" />
+                  <Avatar src={`${back}${factoryuser.Image}`} alt="avatar" variant="rounded" />
                   <div>
-                    <Typography variant="h6">Mayur Jadhav</Typography>
+                    <Typography variant="h6">{factoryuser.Name}</Typography>
                     <Typography variant="small" color="gray" className="font-normal">
-                      Web Developer
+                    {factoryuser._id}
                     </Typography>
                   </div>
                 </div>
@@ -254,7 +259,7 @@ export default function Navigation() {
             )}
           </IconButton>
         </div>
-        <MobileNav open={openNav}>
+        <Collapse  open={openNav}>
           <div className="container mx-auto">
             {navList}
             <div class="px-4 py-3">
@@ -262,7 +267,7 @@ export default function Navigation() {
               <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
             </div>
           </div>
-        </MobileNav>
+        </Collapse>
       </Navbar>
     </div>
 
