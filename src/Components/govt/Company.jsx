@@ -1,87 +1,163 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from './Sidebar'
-// , MdPendingActions
 import { MdGeneratingTokens } from 'react-icons/md'
 import { FcFactory } from 'react-icons/fc'
 import {
   Chart as ChartJS, ArcElement, Tooltip, Legend,
-
   CategoryScale,
   LinearScale,
   BarElement,
   Title,
 } from 'chart.js';
 import { Pie, Bar } from 'react-chartjs-2';
-
+import Datacontext from '../../context/Datacontext';
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,
   LinearScale,
   BarElement,
   Title,);
-
-
 const Company = () => {
-  const cardData = [
-    {
-      icon: MdGeneratingTokens,
-      count: 455,
-      text: 'Total Token Issued'
-    },
 
-    {
-      icon: FcFactory,
-      count: 14851,
-      text: 'Total Companies'
-    },
-  ]
-  const data = {
-    labels: ['Automobile', 'Fuel', 'Oil', 'Home Decor', 'IT', 'Mining'],
+  var context = useContext(Datacontext);
+  var { getfactory, factory } = context
+  const [limit, setlimit] = useState(0)
+  const [chartData, setChartData] = useState(null);
+  const [piedata1, setpiedata1] = useState({
+    labels: [],
     datasets: [
       {
-        label: 'Carbon Emission by ',
-        data: [12, 19, 3, 5, 2, 3],
+        label: 'Carbon Emission by',
+        data: [],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
         ],
         borderWidth: 1,
       },
     ],
-  };
-
-
-  const labels = ['A', 'B'];
-
-  const barData = {
-    labels,
+  })
+  const [piedata2, setpiedata2] = useState({
+    labels: [],
     datasets: [
       {
-        label: 'Dataset 1',
-        data: [50, 100],
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: 'Dataset 2',
-        data: [100, 5880],
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        label: 'Carbon Emission by',
+        data: [],
+        backgroundColor: [
+        ],
+        borderColor: [
+        ],
+        borderWidth: 1,
       },
     ],
-  };
-  
+  })
+
+
+  const totalCarbonEmissionLimit = factory.reduce(
+    (total, entry) => total + parseInt(entry.CarbonEmissionLimit, 10),
+    0
+  );
+
+
+  const cardData = [
+    {
+      icon: MdGeneratingTokens,
+      count: limit,
+      text: 'Total Carbon Limit'
+    },
+
+    {
+      icon: FcFactory,
+      count: factory.length,
+      text: 'Total Companies'
+    },
+  ]
+  const top10ColorsRGBA = [
+    'rgba(255, 99, 132, 0.3)',
+    'rgba(54, 162, 235, 0.4)',
+    'rgba(255, 206, 86, 0.3)',
+    'rgba(75, 192, 192, 0.4)',
+    'rgba(153, 102, 255, 0.3)',
+    'rgba(255, 159, 64, 0.4)',
+    'rgba(0, 204, 102, 0.3)',
+    'rgba(255, 99, 71, 0.4)',
+    'rgba(255, 128, 0, 0.3)',
+    'rgba(0, 128, 128, 0.4)'
+  ];
+  useEffect(() => {
+    setlimit(totalCarbonEmissionLimit)
+    if (factory.length === 0) {
+      getfactory();
+      getfactory();
+    }
+    factory.sort((a, b) => parseInt(b.CarbonEmissionsProduction) - parseInt(a.CarbonEmissionsProduction));
+    const top10Highest = factory.slice(0, 10);
+    const top10Lowest = factory.slice(-10);
+    const companyNames1 = top10Highest.map((item) => item.CompanyName);
+    const emissionsProduction1 = top10Highest.map((item) => parseInt(item.CarbonEmissionsProduction));
+    setpiedata1({
+      labels: companyNames1,
+      datasets: [
+        {
+          label: 'Carbon Emission by ',
+          data: emissionsProduction1,
+          backgroundColor: top10ColorsRGBA,
+          borderColor: top10ColorsRGBA,
+          borderWidth: 1,
+        },
+      ],
+    })
+    const companyNames2 = top10Lowest.map((item) => item.CompanyName);
+    const emissionsProduction2 = top10Lowest.map((item) => parseInt(item.CarbonEmissionsProduction));
+    setpiedata2({
+      labels: companyNames2,
+      datasets: [
+        {
+          label: 'Carbon Emission by ',
+          data: emissionsProduction2,
+          backgroundColor: top10ColorsRGBA,
+          borderColor: top10ColorsRGBA,
+          borderWidth: 1,
+        },
+      ],
+    })
+    if (factory && factory.length > 0) {
+      // Sort the data by the absolute difference between CarbonEmissionLimit and CarbonEmissionsProduction
+      factory.sort(
+        (a, b) =>
+          Math.abs(parseInt(a.CarbonEmissionLimit) - parseInt(a.CarbonEmissionsProduction)) -
+          Math.abs(parseInt(b.CarbonEmissionLimit) - parseInt(b.CarbonEmissionsProduction))
+      );
+
+      // Get the top 10 companies with the least difference
+      const top10LeastDifference = factory.slice(0, 5);
+
+      // Extract the relevant data for the chart
+      const labels = top10LeastDifference.map((item) => item.CompanyName);
+      const emissionLimits = top10LeastDifference.map((item) => parseInt(item.CarbonEmissionLimit));
+      const emissionsProductions = top10LeastDifference.map((item) => parseInt(item.CarbonEmissionsProduction));
+
+      // Create the chart data object
+      const chartData = {
+        labels: labels,
+        datasets: [
+          {
+            label: 'CarbonEmissionLimit',
+            data: emissionLimits,
+            backgroundColor: top10ColorsRGBA.slice(0, 5),
+          },
+          {
+            label: 'CarbonEmissionsProduction',
+            data: emissionsProductions,
+            backgroundColor: top10ColorsRGBA.slice(6, 10),
+          },
+        ],
+      };
+
+      setChartData(chartData);
+    }
+  }, [factory])
+
   return (
     <div className='flex justify-start gap-5'>
-
       <Sidebar />
       <div class="p-4 sm:ml-64 w-full mt-10">
         <div class="p-4  rounded-lg dark:border-gray-700 mt-14">
@@ -106,24 +182,31 @@ const Company = () => {
               </svg>
             </p>
           </div>
-
-
-
-
-
           <div class="grid grid-cols-2 gap-4 mb-4">
-            <div class=" items-center  bg-gray-50 h-auto p-9 dark:bg-gray-800">
-              <h1 className='text-center text-2xl py-5 font-bold'>Total Token Consumption Vs Profit</h1>
-              <Bar data={barData} />
+            <div class=" items-center pb-3 bg-gray-50 px-1 dark:bg-gray-800">
+              <h2 className='text-center text-2xl py-5 font-bold'>Industries leading to Highest C02 emmission</h2>
+              <Pie data={piedata1} />
             </div>
-            <div class=" items-center  bg-gray-50 h-auto p-9 dark:bg-gray-800">
-              <h2 className='text-center text-2xl py-5 font-bold'>Industries leading to C02 emmission</h2>
-              <Pie data={data} />
+
+            <div class=" items-center pb-3 bg-gray-50 px-2 dark:bg-gray-800">
+              <h2 className='text-center text-2xl py-5 font-bold'>Industries leading to Lowest C02 emmission</h2>
+              <Pie data={piedata2} />
             </div>
-           
           </div>
-    
-         
+          <div class=" items-center  bg-gray-50 h-auto p-9 dark:bg-gray-800">
+            <h1 className='text-center text-2xl py-5 font-bold'>Total Token Consumption Vs Profit</h1>
+            {chartData && (
+              <Bar
+                data={chartData}
+                options={{
+                  scales: {
+                    x: { stacked: false },
+                    y: { stacked: false },
+                  },
+                }}
+              />
+            )}
+          </div>
         </div>
       </div>
 
