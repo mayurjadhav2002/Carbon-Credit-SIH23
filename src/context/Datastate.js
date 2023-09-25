@@ -4,6 +4,7 @@ const Datastate = (props) => {
     var back = "https://manish-ka-carbon-ka-gota.onrender.com"
     const noteinitial = []
     const [factory, setfactory] = useState(noteinitial)
+    const [cartificate, setcertificate] = useState(noteinitial)
     const [factoryuser, setfactoryuser] = useState((localStorage.getItem("factoryuser")) ? JSON.parse(localStorage.getItem("factoryuser")) : ({Email    :    "",Image    :    "",Name    :    "",Password    :    "",Phonenumber    :    "",createdAt    :    "",updatedAt    :    "",_id    :    "",}))
 
     const getfactory = async () => {
@@ -19,9 +20,19 @@ const Datastate = (props) => {
         setfactoryuser(JSON.parse(localStorage.getItem("factoryuser")))
     }
     }
+    const getcertificate = async () => {
+        const response = await fetch(`${back}/app/getcertificate`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json;charset=UTF-8",
+            }
+        });
+        const json = await response.json()
+        setcertificate(json.certificate)
+    }
 
     return (
-        <Datacontext.Provider value={{ getfactory, factory,factoryuser,back}}>
+        <Datacontext.Provider value={{ getfactory,getcertificate,cartificate, factory,factoryuser,back}}>
             {props.children}
         </Datacontext.Provider>
     )
