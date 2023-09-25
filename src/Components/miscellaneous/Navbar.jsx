@@ -185,7 +185,7 @@ export default function Navigation() {
               }
             </ul>
           </div>
-          {!(Comp || Gov) ?
+          {!(Comp || Gov)  ?
             <div className="flex w-max gap-4">
 
               <Link to="/login" className="flex items-center gap-3 text-white bg-blue-500 hover:bg-blue-800 
@@ -196,7 +196,7 @@ export default function Navigation() {
             <Menu>
               <Menu.Button>
                 <div className="flex items-center gap-4">
-                  <Avatar src={`${back}${factoryuser.Image}`} alt="avatar" variant="rounded" />
+                  <Avatar src={`${back}static/company.png`} alt="avatar" variant="rounded" />
                   <div>
                     <Typography variant="h6">{factoryuser.Name}</Typography>
                     <Typography variant="small" color="gray" className="font-normal">

@@ -6,6 +6,7 @@ import { HiArrowSmRight, HiChartPie,  HiShoppingBag, HiTable, HiViewBoards } fro
 import {MdFactory, MdPendingActions} from 'react-icons/md'
 import {TbCertificate} from 'react-icons/tb'
 import { Link } from 'react-router-dom';
+import {BsFillHddRackFill} from 'react-icons/bs'
 
 export default function ContentSeparator() {
     return (
@@ -47,10 +48,10 @@ export default function ContentSeparator() {
                                 <Sidebar.Item
                                 as={Link}
                                 to={'/govt/map'}
-                                icon={TbCertificate}
+                                icon={BsFillHddRackFill}
                                 >
                                     <p>
-                                        Carbon Radius
+                                        Visualizer
                                     </p>
                                 </Sidebar.Item>
                                 <Sidebar.Item

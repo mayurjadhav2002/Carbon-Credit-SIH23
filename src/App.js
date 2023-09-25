@@ -19,6 +19,7 @@ import GenerateCerticate from "./Components/govt/utils/GenerateCerticate";
 import PendingApprovals from "./Components/govt/PendingApprovals";
 import ViewDetails from "./Components/govt/ViewDetails";
 import Datastate from "./context/Datastate"
+import CompanyCards from "./Components/Company/utils/CompanyCards";
 function App() {
   return (
     <Datastate>
@@ -44,12 +45,14 @@ function App() {
           <Route path='/company/licence-transaction' element={<BuyCredits />} />
 
           <Route path='/company/certificate' element={<Certificate />} />
+          <Route path='/company/project/invest' element={<CompanyCards />} />
 
 
           {/* Miscellanous */}
 
           <Route path='/demo/map' element={<PollutionGraph />} />
           <Route path="*" element={<Error />} />
+        
 
         </Routes>
       </div>
