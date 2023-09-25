@@ -1,6 +1,5 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import { Button } from '@material-tailwind/react'
 import { Link } from 'react-router-dom'
 
 function PendingApprovals() {

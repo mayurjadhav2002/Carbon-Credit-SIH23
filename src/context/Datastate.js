@@ -44,7 +44,7 @@ await setLoading(!loading)
     }
 
     return (
-        <Datacontext.Provider value={{getfactory,factory, loading}}>
+        <Datacontext.Provider value={{getfactory,factory,factoryuser, loading}}>
             {props.children}
         </Datacontext.Provider>
     )
