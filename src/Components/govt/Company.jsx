@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from './Sidebar'
-import { MdGeneratingTokens } from 'react-icons/md'
+import { MdGeneratingTokens,MdPendingActions,MdOutlineVerifiedUser } from 'react-icons/md'
 import { FcFactory } from 'react-icons/fc'
+import { BsWind } from 'react-icons/bs'
+
 import {
   Chart as ChartJS, ArcElement, Tooltip, Legend,
   CategoryScale,
@@ -9,6 +11,7 @@ import {
   BarElement,
   Title,
 } from 'chart.js';
+import { Link } from 'react-router-dom'
 import { Pie, Bar } from 'react-chartjs-2';
 import Datacontext from '../../context/Datacontext';
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale,
@@ -20,6 +23,7 @@ const Company = () => {
   var context = useContext(Datacontext);
   var { getfactory, factory } = context
   const [limit, setlimit] = useState(0)
+  const [produced, setproduced] = useState(0)
   const [chartData, setChartData] = useState(null);
   const [piedata1, setpiedata1] = useState({
     labels: [],
@@ -50,13 +54,14 @@ const Company = () => {
     ],
   })
 
-
   const totalCarbonEmissionLimit = factory.reduce(
     (total, entry) => total + parseInt(entry.CarbonEmissionLimit, 10),
     0
   );
-
-
+  const totalCarbonEmission = factory.reduce(
+    (total, entry) => total + parseInt(entry.CarbonEmissionsProduction, 10),
+    0
+  );
   const cardData = [
     {
       icon: MdGeneratingTokens,
@@ -69,6 +74,21 @@ const Company = () => {
       count: factory.length,
       text: 'Total Companies'
     },
+    {
+      icon: MdOutlineVerifiedUser,
+      count: "45",
+      text: 'Reports Unverified'
+    },
+    {
+      icon: MdPendingActions,
+      count: "5",
+      text: 'Pending Approval'
+    },
+    {
+      icon: BsWind,
+      count:produced,
+      text: 'Total CO2 produced'
+    }
   ]
   const top10ColorsRGBA = [
     'rgba(255, 99, 132, 0.3)',
@@ -84,6 +104,7 @@ const Company = () => {
   ];
   useEffect(() => {
     setlimit(totalCarbonEmissionLimit)
+    setproduced(totalCarbonEmission)
     if (factory.length === 0) {
       getfactory();
       getfactory();
@@ -155,7 +176,30 @@ const Company = () => {
       setChartData(chartData);
     }
   }, [factory])
+  const header = [
+    { name: 'Company Name' },
+    { name: 'Carbon Produced' },
+    { name: 'Carbon Limits' },
+    { name: 'CarbonIndex' },
+    { name: 'City' }
+  ]
+  const data = [].concat(
+    ...factory.map((marker) => {
+      return {
+        key: marker._id,
+        id: marker._id,
+        name: marker.CompanyName,
+        limits: marker.CarbonEmissionLimit,
+        issues: marker.CarbonEmissionsProduction,
+        CarbonIndex: marker.CarbonIndex,
+        City: marker.City
+      }
+    })
+  );
 
+  var datas = data.sort((a, b) => 
+    parseInt(a.CarbonEmissionsProduction) - parseInt(b.CarbonEmissionsProduction));
+  const maintable = datas.slice(0, 10)
   return (
     <div className='flex justify-start gap-5'>
       <Sidebar />
@@ -175,12 +219,49 @@ const Company = () => {
             )}
 
           </div>
-          <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-              <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
-              </svg>
-            </p>
+
+          <div class="relative w-full mb-5  shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
+                <tr>
+
+                  {header.map((data, index) =>
+                    <th key={index} scope="col" class="px-6 py-3">
+                      {data.name}
+                    </th>
+                  )}
+
+                </tr>
+              </thead>
+              <tbody>
+
+                {maintable.map((data, index) => {
+                  return (
+                    <tr key={data.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                      <th key="index" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {data.name}
+                      </th>
+                      <td class="px-6 py-4">
+                        {data.issues}
+                      </td>
+
+                      <td class="px-6 py-4">
+                        {data.limits} CAT
+                      </td>
+                      <td class="px-6 py-4">
+                        {data.CarbonIndex}
+                      </td>
+                      <td class="px-6 py-4">
+                        {data.City}
+                      </td>
+                    </tr>
+                  )
+                }
+                )}
+
+              </tbody>
+            </table>
+
           </div>
           <div class="grid grid-cols-2 gap-4 mb-4">
             <div class=" items-center pb-3 bg-gray-50 px-1 dark:bg-gray-800">
