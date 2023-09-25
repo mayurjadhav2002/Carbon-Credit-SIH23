@@ -25,10 +25,12 @@ export default function Navigation() {
     e.preventDefault();
     if (localStorage.getItem("Comptoken")) {
       localStorage.removeItem("Comptoken");
+      localStorage.removeItem("factoryuser");
       setComp(false)
     }
     if (localStorage.getItem("Govtoken")) {
       localStorage.removeItem("Govtoken");
+      localStorage.removeItem("factoryuser");
       setGov(false)
     }
     history("/login")
@@ -198,7 +200,7 @@ export default function Navigation() {
                   <div>
                     <Typography variant="h6">{factoryuser.Name}</Typography>
                     <Typography variant="small" color="gray" className="font-normal">
-                    {factoryuser.Email}
+                    {factoryuser._id}
                     </Typography>
                   </div>
                 </div>
