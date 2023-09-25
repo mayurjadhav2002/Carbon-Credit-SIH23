@@ -18,26 +18,28 @@ function TableData() {
         { name: 'Issues' },
         { name: 'Eligible of CC' },
     ]
-    const data = [].concat(
-        ...factory.map((marker) => {
-          var main = marker.Data;
-          return main.map((mark) => ({
-            key:mark._id,
-            id: mark._id,
-            name: mark.CompanyName,
-            industry: mark.Product,
-            size: mark.Size,
-            project_details: 'https://details',
-            status: 'pending',
-            limits: mark.CarbonEmissionLimit,
-            issues: mark.CarbonEmissionsProduction,
-            eligible: 'No',
-          }));
-        })
-    );
+      const  data = [].concat(
+            ...factory.map((marker) => {
+              var main = marker.Data;
+              return main.map((mark) => ({
+                key:mark._id,
+                id: mark._id,
+                name: mark.CompanyName,
+                industry: mark.Product,
+                size: mark.Size,
+                project_details: 'https://details',
+                status: 'pending',
+                limits: mark.CarbonEmissionLimit,
+                issues: mark.CarbonEmissionsProduction,
+                eligible: 'No',
+              }));
+            })
+        );
+    
+    
     useEffect(() => {
         if (factory.length === 0) {
-            getfactory();
+             getfactory();
         }
     }, [factory])
 
@@ -75,7 +77,7 @@ function TableData() {
 
                     <tbody>
                        
-                        {data.map((data, index)=>
+                        {data.length > 0 && data.map((data, index)=>
                             <tr key={data.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
                             <th key="index" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {data.name}

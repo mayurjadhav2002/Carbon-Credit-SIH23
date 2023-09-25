@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Datacontext from './Datacontext'
 const Datastate = (props) => {
-    var back = "https://manish-ka-carbon-ka-gota.onrender.com"
+    var back = process.env.REACT_APP_BACKEND_URL
     const noteinitial = []
     const [factory, setfactory] = useState(noteinitial)
     const [loading, setLoading] = useState(false)
@@ -11,7 +11,7 @@ const Datastate = (props) => {
 
     const getfactory = async () => {
         await setLoading(!loading)
-        const response = await fetch(`${back}/app/getfactory`, {
+        const response = await fetch(`${back}app/getfactory`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json;charset=UTF-8",
@@ -28,7 +28,7 @@ const Datastate = (props) => {
     }
     const getcertificate = async () => {
 
-        const response = await fetch(`${back}/app/getcertificate`, {
+        const response = await fetch(`${back}app/getcertificate`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json;charset=UTF-8",
