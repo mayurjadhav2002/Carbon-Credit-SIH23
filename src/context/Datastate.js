@@ -7,13 +7,11 @@ const Datastate = (props) => {
     const [loading, setLoading] = useState(false)
     const [cartificate, setcertificate] = useState(noteinitial)
     const [factoryuser, setfactoryuser] = useState((localStorage.getItem("factoryuser")) ? JSON.parse(localStorage.getItem("factoryuser")) : ({Email    :    "",Image    :    "",Name    :    "",Password    :    "",Phonenumber    :    "",createdAt    :    "",updatedAt    :    "",_id    :    "",}))
-const functinloading = async() =>{
-await setLoading(!loading)
-}
+
 
     const getfactory = async () => {
-        await functinloading();
-        const response = await fetch(`${back}app/getfactory`, {
+        await setLoading(!loading)
+        const response = await fetch(`${back}/app/getfactory`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json;charset=UTF-8",
@@ -25,11 +23,10 @@ await setLoading(!loading)
         setfactoryuser(JSON.parse(localStorage.getItem("factoryuser")))
         
     }
-    await functinloading();
+    await setLoading(!loading)
 
     }
     const getcertificate = async () => {
-        await functinloading();
 
         const response = await fetch(`${back}/app/getcertificate`, {
             method: "POST",
@@ -39,7 +36,6 @@ await setLoading(!loading)
         });
         const json = await response.json()
        await setcertificate(json.certificate)
-        await functinloading();
 
     }
 
