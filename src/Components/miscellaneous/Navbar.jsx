@@ -70,8 +70,8 @@ export default function Navigation() {
 
   const NavList = [
     {
-      text: "About",
-      href: "/about"
+      text: "Home",
+      href: "/"
     },
     {
       text: "Map",
