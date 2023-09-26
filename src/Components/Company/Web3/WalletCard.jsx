@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import detectEthereumProvider from '@metamask/detect-provider';
 import Sidebar from '../Sidebar';
+import {ImNotification} from 'react-icons/im'
 export const formatBalance = (rawBalance) => {
     const balance = (parseInt(rawBalance) / 1000000000000000000).toFixed(2)
     return balance
@@ -73,8 +74,12 @@ function WalletCard() {
       <Sidebar />
       <div className='p-4 sm:ml-64 w-full mt-20'>
         <div className='App'>
-   
-          <div>Injected Provider {hasProvider ? 'DOES' : 'DOES NOT'} Exist</div>
+        <div className='container p-5 w-full bg-blue-50 rounded-lg shadow-md'>
+        <div className='bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300'>
+        <div>Injected Provider {hasProvider ? 'METAMASK DOES' : 'METAMASK DOES NOT'} Exist</div>
+        </div>
+        
+         
 
           {window.ethereum?.isMetaMask && wallet.accounts.length < 1 && (
             <button onClick={handleConnect} className='flex item-center gap-2 font-bold px-3 py-2 border-2 shadow-xl border-orange-300 rounded-xl'>
@@ -86,6 +91,7 @@ function WalletCard() {
             </button>
           )}
 
+  </div>
           {wallet.accounts.length > 0 && (
             <>
               <div>Wallet Accounts: {wallet.accounts[0]}</div>
@@ -97,6 +103,9 @@ function WalletCard() {
         </div>
       </div>
     </div>
+
+        
+        
   );
 }
 
