@@ -26,7 +26,7 @@ function TableData() {
                 name: marker.CompanyName,
                 industry: marker.Product,
                 size: marker.Size,
-                project_details: 'https://details',
+                project_details: '#',
                 status: 'pending',
                 limits: marker.CarbonEmissionLimit,
                 issues: marker.CarbonEmissionsProduction,

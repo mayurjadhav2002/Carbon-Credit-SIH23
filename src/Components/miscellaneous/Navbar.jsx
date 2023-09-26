@@ -138,10 +138,10 @@ export default function Navigation() {
           <Typography
             as={Link}
             to={'/'}
-            className="mr-4 cursor-pointer py-1.5 font-medium text-xl text-blue-500 "
+            className="mr-4 cursor-pointer py-1.5 font-medium text-xl text-blue-500 flex items-center gap-2"
           >
-            <img className="w-10 " src="./logo.jpeg"></img>
-          </Typography>
+            <img className="w-10 " src="./logo.jpeg"></img> <span className="font-bold text-xl text-black">Credactions</span>
+          </Typography> 
           <div className="hidden lg:block">
             <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 text-black dark:text-white">
 

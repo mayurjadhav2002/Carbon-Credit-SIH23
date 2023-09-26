@@ -17,9 +17,9 @@ root.render(
           developerMode: false,
         },
         communicationServerUrl: process.env.REACT_APP_COMM_SERVER_URL,
-        checkInstallationImmediately: false, // This will automatically connect to MetaMask on page load
+        checkInstallationImmediately: true, // This will automatically connect to MetaMask on page load
         dappMetadata: {
-          name: "Demo React App",
+          name: "React App",
           url: window.location.host,
         }
     }}>
