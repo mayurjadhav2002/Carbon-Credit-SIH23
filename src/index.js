@@ -6,13 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@material-tailwind/react";
 import { AuthProvider } from './Components/Admin/Context/AuthContext';
-import { MetaMaskUIProvider } from '@metamask/sdk-react-ui';
+import { MetaMaskProvider } from '@metamask/sdk-react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ThemeProvider>
-    <MetaMaskUIProvider debug={false} sdkOptions={{
+    <MetaMaskProvider debug={false} sdkOptions={{
       logging:{
           developerMode: false,
         },
@@ -29,7 +29,7 @@ root.render(
         <App />
       </BrowserRouter>
       </AuthProvider>
-      </MetaMaskUIProvider>
+      </MetaMaskProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
