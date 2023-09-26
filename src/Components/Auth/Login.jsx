@@ -15,15 +15,15 @@ import { Link } from 'react-router-dom';
 
 function Login() {
     var history = useNavigate();
-    const [Govlogindetail, setGovlogindetail] = useState({ email: "", password: "" })
+    const [Govlogindetail, setGovlogindetail] = useState({ id: "", password: "" })
     const handleclickGov = (e) => {
         e.preventDefault();
-        Govlogin(Govlogindetail.email, Govlogindetail.password)
+        Govlogin(Govlogindetail.id, Govlogindetail.password)
     }
     const onchangeGov = (e) => {
         setGovlogindetail({ ...Govlogindetail, [e.target.name]: e.target.value })
     }
-    const Govlogin = async (Email, Password) => {
+    const Govlogin = async (id, Password) => {
         // Default options are marked with *
         const response = await fetch('https://manish-ka-carbon-ka-gota.onrender.com/app/Govlogin', {
             method: "POST",
@@ -31,7 +31,7 @@ function Login() {
                 "Content-type": "application/json;charset=UTF-8",
             },
             // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify({ Email, Password })
+            body: JSON.stringify({ id, Password })
         });
         const json = await response.json()
         
@@ -51,15 +51,15 @@ function Login() {
         }
     }
 
-    const [Complogindetail, setComplogindetail] = useState({ email: "", password: "" })
+    const [Complogindetail, setComplogindetail] = useState({ id: "", password: "" })
     const handleclickcomp = (e) => {
         e.preventDefault();
-        Complogin(Complogindetail.email, Complogindetail.password)
+        Complogin(Complogindetail.id, Complogindetail.password)
     }
     const onchangecomp = (e) => {
         setComplogindetail({ ...Complogindetail, [e.target.name]: e.target.value })
     }
-    const Complogin = async (Email, Password) => {
+    const Complogin = async (id, Password) => {
         // Default options are marked with *
         const response = await fetch('https://manish-ka-carbon-ka-gota.onrender.com/app/login', {
             method: "POST",
@@ -67,7 +67,7 @@ function Login() {
                 "Content-type": "application/json;charset=UTF-8",
             },
             // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify({ Email, Password })
+            body: JSON.stringify({ id, Password })
         });
         const json = await response.json()
         if (json.jwttoken) {
@@ -137,11 +137,11 @@ function Login() {
                                                 </div>
                                                 <TextInput
                                                     id="email2"
-                                                    placeholder="name@flowbite.com"
+                                                    placeholder="name"
                                                     required
                                                     shadow
-                                                    type="email"
-                                                    name='email'
+                                                    type="text"
+                                                    name='id'
                                                     onChange={onchangecomp}
 
                                                 />
@@ -202,10 +202,9 @@ function Login() {
                                                     placeholder="name@flowbite.com"
                                                     required
                                                     shadow
-                                                    type="email"
-                                                    name='email'
+                                                    type="text"
+                                                    name='id'
                                                     onChange={onchangeGov}
-
                                                 />
                                             </div>
                                             <div>
