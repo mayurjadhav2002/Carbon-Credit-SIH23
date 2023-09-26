@@ -21,13 +21,14 @@ import ViewDetails from "./Components/govt/ViewDetails";
 import Datastate from "./context/Datastate"
 import CompanyCards from "./Components/Company/utils/CompanyCards";
 import WalletCard from "./Components/Company/Web3/WalletCard";
+import Index from "./Components/Landing/Index";
 function App() {
   return (
     <Datastate>
       <div className="w-full">
         <Navbar />
         <Routes>
-          <Route exact path='/' element={<Home />} />
+          <Route exact path='/' element={<Index />} />
           <Route exact path='/login' element={<Login />} />
           <Route path='/contact' element={<Contact />} />
 
