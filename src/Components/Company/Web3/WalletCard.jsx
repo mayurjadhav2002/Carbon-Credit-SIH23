@@ -76,7 +76,7 @@ function WalletCard() {
         <div className='App'>
         <div className='container p-5 w-full bg-blue-50 rounded-lg shadow-md'>
         <div className='bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300'>
-        <div>Injected Provider {hasProvider ? 'METAMASK DOES' : 'METAMASK DOES NOT'} Exist</div>
+        <div><ImNotification/> Injected Provider {hasProvider ? 'METAMASK DOES' : 'METAMASK DOES NOT'} Exist</div>
         </div>
         
          
