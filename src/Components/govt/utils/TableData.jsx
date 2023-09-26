@@ -37,7 +37,6 @@ function TableData() {
     useEffect(() => {
         if (factory.length === 0) {
             getfactory();
-            getfactory();
         }
     }, [factory])
 
@@ -72,39 +71,36 @@ function TableData() {
                         </tr>
                     </thead>
                     <tbody>
-
-                        {currentItems.map((data, index) => {
-                            return (
-                                <tr key={data.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
-                                    <th key="index" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {data.name}
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        {data.industry}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {data.size}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <Link to={data.project_details} class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</Link>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {data.status}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {data.limits} CAT
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {data.issues}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {data.eligible}
-                                    </td>
-                                </tr>
-                            )
-                        }
-                        )}
-
+                       
+                        {data.map((data, index)=>
+                            <tr key={data.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                            <th key="index" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {data.name}
+                            </th>
+                            <td class="px-6 py-4">
+                                {data.industry}
+                            </td>
+                            <td class="px-6 py-4">
+                                {data.size}
+                            </td>
+                            <td class="px-6 py-4">
+                            <Link to={data.project_details} class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</Link>
+                            </td>
+                            <td class="px-6 py-4">
+                                {data.status}
+                            </td>
+                            <td class="px-6 py-4">
+                                {data.limits} CAT
+                            </td>
+                            <td class="px-6 py-4">
+                            {data.issues}
+                        </td>
+                        <td class="px-6 py-4">
+                        {data.eligible}
+                    </td>
+                            </tr>
+                            )}
+                       
                     </tbody>
                 </table>
                

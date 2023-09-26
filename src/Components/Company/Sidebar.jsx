@@ -2,7 +2,7 @@
 
 import { Sidebar } from 'flowbite-react';
 // HiInbox,HiUser
-import {  HiChartPie, HiViewBoards } from 'react-icons/hi';
+import { HiChartPie, HiViewBoards } from 'react-icons/hi';
 import { MdFactory, MdPendingActions } from 'react-icons/md'
 import { TbCertificate } from 'react-icons/tb'
 import { Link } from 'react-router-dom';
@@ -36,7 +36,7 @@ export default function ContentSeparator() {
                                     </p>
                                 </Sidebar.Item>
                                 <Sidebar.Item
-                                as={Link}
+                                    as={Link}
                                     to="/company/certificate"
                                     icon={TbCertificate}
                                 >
@@ -50,14 +50,25 @@ export default function ContentSeparator() {
 
                                 </Sidebar.Item>
                                 <Sidebar.Item
-                                    href="#"
-                                    icon={MdPendingActions}
+                                    as={Link}
+
+                                    to={'/company/wallet/balance'}
+                                     icon={MdPendingActions}
                                 >
                                     <p>
                                         Pending Approvals
                                     </p>
                                 </Sidebar.Item>
-                         
+                                <Sidebar.Item
+                                as={Link}
+
+                                to={'/company/wallet/balance'}                                    icon={MdPendingActions}
+                                >
+                                    <p>
+                                        Wallet
+                                    </p>
+                                </Sidebar.Item>
+
                             </Sidebar.ItemGroup>
                             <Sidebar.ItemGroup>
                                 <Sidebar.Item
@@ -79,23 +90,23 @@ export default function ContentSeparator() {
                                     </div>
                                 </Sidebar.Item>
                                 <Sidebar.Item
-                                href="#"
-                                className="bg-lime-100 hover:bg-lime-200 border-2 border-lime-300"
-                            >
-                                <div class="grid items-center justify-start  h-24 rounded  dark:bg-gray-800">
-                                    <div className=''>
-                                        <p>Credit Remaining</p>
-                                    </div>    <hr />
-                                    <div className='flex justify-start gap-4 items-center'>
+                                    href="#"
+                                    className="bg-lime-100 hover:bg-lime-200 border-2 border-lime-300"
+                                >
+                                    <div class="grid items-center justify-start  h-24 rounded  dark:bg-gray-800">
+                                        <div className=''>
+                                            <p>Credit Remaining</p>
+                                        </div>    <hr />
+                                        <div className='flex justify-start gap-4 items-center'>
 
-                                        <HiViewBoards className='text-4xl' /> <span className='text-2xl'>455
-                                            <span className='text-xl text-gray-500'> tons</span>
-                                        </span>
+                                            <HiViewBoards className='text-4xl' /> <span className='text-2xl'>455
+                                                <span className='text-xl text-gray-500'> tons</span>
+                                            </span>
+                                        </div>
+
+
                                     </div>
-
-
-                                </div>
-                            </Sidebar.Item>
+                                </Sidebar.Item>
                             </Sidebar.ItemGroup>
                         </Sidebar.Items>
                     </Sidebar>

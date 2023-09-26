@@ -20,6 +20,7 @@ import PendingApprovals from "./Components/govt/PendingApprovals";
 import ViewDetails from "./Components/govt/ViewDetails";
 import Datastate from "./context/Datastate"
 import CompanyCards from "./Components/Company/utils/CompanyCards";
+import WalletCard from "./Components/Company/Web3/WalletCard";
 function App() {
   return (
     <Datastate>
@@ -46,7 +47,7 @@ function App() {
 
           <Route path='/company/certificate' element={<Certificate />} />
           <Route path='/company/project/invest' element={<CompanyCards />} />
-
+<Route path='/company/wallet/balance' element={<WalletCard/>}/>
 
           {/* Miscellanous */}
 

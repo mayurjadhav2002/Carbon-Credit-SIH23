@@ -6,16 +6,30 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@material-tailwind/react";
 import { AuthProvider } from './Components/Admin/Context/AuthContext';
+import { MetaMaskUIProvider } from '@metamask/sdk-react-ui';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ThemeProvider>
-  
+    <MetaMaskUIProvider debug={false} sdkOptions={{
+      logging:{
+          developerMode: false,
+        },
+        communicationServerUrl: process.env.REACT_APP_COMM_SERVER_URL,
+        checkInstallationImmediately: false, // This will automatically connect to MetaMask on page load
+        dappMetadata: {
+          name: "Demo React App",
+          url: window.location.host,
+        }
+    }}>
 <AuthProvider>
+
       <BrowserRouter>
         <App />
       </BrowserRouter>
       </AuthProvider>
+      </MetaMaskUIProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
